@@ -315,7 +315,6 @@
             background: linear-gradient(165deg, #ffffff 0%, #f0f6fe 100%);
         }
 
-        /* Glowing Orbs */
         .hero .orb {
             position: absolute;
             border-radius: 50%;
@@ -369,7 +368,6 @@
             }
         }
 
-        /* Hero Content */
         .hero .container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -473,24 +471,12 @@
             letter-spacing: -0.02em;
         }
 
-        .hero-stats .stat .number .accent {
-            color: var(--accent);
-        }
-
         .hero-stats .stat .label {
             font-size: 0.8rem;
             color: var(--text-light);
             font-weight: 500;
             letter-spacing: 0.04em;
             margin-top: 2px;
-        }
-
-        /* Hero Image / Showcase */
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .hero-image .showcase {
@@ -629,7 +615,6 @@
             transform: translateY(-4px) scale(1.05);
         }
 
-        /* Floating icons around hero */
         .float-icon {
             position: absolute;
             font-size: 1.8rem;
@@ -944,7 +929,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           PROJECTS
+           PROJECTS — with images named exactly after project title
            ══════════════════════════════════════════════════════════════════ */
         .projects {
             padding: 80px 0 70px;
@@ -962,64 +947,148 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
             margin-top: 40px;
         }
 
         .project-card {
             background: var(--bg-light);
             border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 22px 16px 24px;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
+            border-radius: var(--radius);
             overflow: hidden;
+            transition: var(--transition);
             cursor: default;
             box-shadow: var(--shadow);
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: var(--radius-sm);
-            padding: 2px;
-            background: linear-gradient(135deg, transparent, var(--accent), transparent);
-            opacity: 0;
-            transition: var(--transition);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-
-        .project-card:hover::after {
-            opacity: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
-            border-color: transparent;
+            border-color: rgba(245, 158, 11, 0.2);
         }
 
-        .project-card .emoji {
-            font-size: 2.6rem;
+        .project-card .project-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+            background: #e8edf4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-card .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            margin-bottom: 8px;
             transition: var(--transition);
         }
 
-        .project-card:hover .emoji {
-            transform: scale(1.2) rotate(-6deg);
+        .project-card:hover .project-image img {
+            transform: scale(1.04);
         }
 
-        .project-card .name {
-            font-weight: 600;
-            font-size: 0.85rem;
+        .project-card .project-image .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.25));
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .project-card .project-image .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 14px;
+            border-radius: 100px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            z-index: 2;
+        }
+
+        .project-card .project-image .badge.beginner {
+            background: rgba(34, 197, 94, 0.75);
+            backdrop-filter: blur(4px);
+        }
+        .project-card .project-image .badge.intermediate {
+            background: rgba(245, 158, 11, 0.75);
+            backdrop-filter: blur(4px);
+        }
+        .project-card .project-image .badge.advanced {
+            background: rgba(239, 68, 68, 0.75);
+            backdrop-filter: blur(4px);
+        }
+
+        .project-card .project-image .fallback-icon {
+            position: absolute;
+            font-size: 3.6rem;
+            opacity: 0.25;
+            color: var(--text-light);
+            z-index: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        .project-card .project-body {
+            padding: 20px 22px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card .project-body .project-title {
+            font-weight: 700;
+            font-size: 1.05rem;
             color: var(--text-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-card .project-body .project-title .emoji {
+            font-size: 1.2rem;
+        }
+
+        .project-card .project-body .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 14px;
+            flex: 1;
+        }
+
+        .project-card .project-body .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .project-card .project-body .project-meta .skill-tag {
+            background: rgba(245, 158, 11, 0.08);
+            padding: 2px 12px;
+            border-radius: 100px;
+            color: var(--accent);
+            font-weight: 600;
+            border: 1px solid rgba(245, 158, 11, 0.08);
         }
 
         /* ══════════════════════════════════════════════════════════════════
@@ -1269,6 +1338,9 @@
             .float-icon {
                 display: none;
             }
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -1360,17 +1432,23 @@
                 padding: 3px 10px;
             }
             .projects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 12px;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
             }
-            .project-card {
-                padding: 16px 12px 18px;
+            .project-card .project-image {
+                aspect-ratio: 16/10;
             }
-            .project-card .emoji {
-                font-size: 2rem;
+            .project-card .project-image img {
+                object-fit: cover;
             }
-            .project-card .name {
-                font-size: 0.75rem;
+            .project-card .project-body {
+                padding: 16px 18px 20px;
+            }
+            .project-card .project-body .project-title {
+                font-size: 0.9rem;
+            }
+            .project-card .project-body .project-desc {
+                font-size: 0.8rem;
             }
             .cta h2 {
                 font-size: 1.6rem;
@@ -1453,17 +1531,11 @@
                 font-size: 1.6rem;
             }
             .projects-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
-            .project-card {
-                padding: 14px 10px 16px;
-            }
-            .project-card .emoji {
-                font-size: 1.6rem;
-            }
-            .project-card .name {
-                font-size: 0.65rem;
+            .project-card .project-image {
+                aspect-ratio: 16/9;
             }
             .curriculum-card {
                 padding: 16px 14px 20px;
@@ -1544,7 +1616,6 @@
     <header class="header" id="header">
         <div class="container">
             <div class="logo">
-                <!-- Logo Image: place your logo as '1.png' or '1.jpg' in the same folder -->
                 <img src="1.png" alt="APlusCodersAcademy Logo" class="logo-img" />
                 <span class="brand-text">
                     <span class="accent">APlus</span>Coders<span class="accent">Academy</span>
@@ -1563,12 +1634,10 @@
 
     <!-- ════════════════════════════════════════════ HERO ════════════════════════════════════════════ -->
     <section class="hero" id="home">
-        <!-- Glowing Orbs -->
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
 
-        <!-- Floating Icons -->
         <span class="float-icon">⚡</span>
         <span class="float-icon">🤖</span>
         <span class="float-icon">🔋</span>
@@ -1607,7 +1676,6 @@
                 </div>
             </div>
 
-            <!-- Hero Image / Showcase -->
             <div class="hero-image">
                 <div class="showcase">
                     <div class="grid-bg"></div>
@@ -1881,7 +1949,7 @@
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ PROJECTS ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ PROJECTS — images named exactly after project title ════════════════════════════════════════════ -->
     <section class="projects" id="projects">
         <div class="container">
             <div class="text-center reveal">
@@ -1889,31 +1957,8 @@
                 <h2 class="section-title">What they'll <span class="highlight">build</span></h2>
                 <p class="section-sub">Every project is a milestone. From the first LED to a complete smart home.</p>
             </div>
-            <div class="projects-grid">
-                <div class="project-card reveal"><span class="emoji">💡</span><div class="name">Button LED Board</div></div>
-                <div class="project-card reveal"><span class="emoji">🔋</span><div class="name">Electric Generator</div></div>
-                <div class="project-card reveal"><span class="emoji">🔊</span><div class="name">Buzzer Board</div></div>
-                <div class="project-card reveal"><span class="emoji">⏱️</span><div class="name">Timer‑Controlled Buzzer</div></div>
-                <div class="project-card reveal"><span class="emoji">💧</span><div class="name">Water Filling &amp; Level</div></div>
-                <div class="project-card reveal"><span class="emoji">🔢</span><div class="name">7‑Segment Counter</div></div>
-                <div class="project-card reveal"><span class="emoji">🕐</span><div class="name">Digital Clock</div></div>
-                <div class="project-card reveal"><span class="emoji">🚗</span><div class="name">Parking Sensor</div></div>
-                <div class="project-card reveal"><span class="emoji">🌤️</span><div class="name">Weather Station</div></div>
-                <div class="project-card reveal"><span class="emoji">🌿</span><div class="name">Smart Irrigation</div></div>
-                <div class="project-card reveal"><span class="emoji">🚪</span><div class="name">Touch‑Controlled Door</div></div>
-                <div class="project-card reveal"><span class="emoji">💨</span><div class="name">Fan Speed Controller</div></div>
-                <div class="project-card reveal"><span class="emoji">💡</span><div class="name">Smart Motion Bulb</div></div>
-                <div class="project-card reveal"><span class="emoji">🔔</span><div class="name">RF Door Alarm</div></div>
-                <div class="project-card reveal"><span class="emoji">🔒</span><div class="name">Password Safe</div></div>
-                <div class="project-card reveal"><span class="emoji">❤️</span><div class="name">Heartbeat Monitor</div></div>
-                <div class="project-card reveal"><span class="emoji">🏋️</span><div class="name">Strength Game</div></div>
-                <div class="project-card reveal"><span class="emoji">⚖️</span><div class="name">Weight Scale</div></div>
-                <div class="project-card reveal"><span class="emoji">🚒</span><div class="name">Fire Detection</div></div>
-                <div class="project-card reveal"><span class="emoji">🔊</span><div class="name">Sound System</div></div>
-                <div class="project-card reveal"><span class="emoji">🚗</span><div class="name">Autodriven Car</div></div>
-                <div class="project-card reveal"><span class="emoji">🤖</span><div class="name">Line‑Tracking Robot</div></div>
-                <div class="project-card reveal"><span class="emoji">📸</span><div class="name">Digital Camera</div></div>
-                <div class="project-card reveal"><span class="emoji">🏠</span><div class="name">Smart Home</div></div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects injected by JavaScript in sorted order -->
             </div>
         </div>
     </section>
@@ -1962,7 +2007,299 @@
         (function() {
             'use strict';
 
-            // ─── HEADER SCROLL ───
+            // ─── PROJECT DATA ────────────────────────────────────────────
+            const projectsData = [{
+                id: 1,
+                title: 'Button LED Board',
+                emoji: '💡',
+                desc: 'Learn how to control an LED with a push button. Understand input/output concepts, digital signals, and basic circuit building on a breadboard.',
+                meta: '⚡ Digital I/O',
+                skill: 'Input · Output',
+                difficulty: 'beginner',
+                grad: 'grad-1'
+            }, {
+                id: 2,
+                title: 'Electric Generator',
+                emoji: '🔋',
+                desc: 'Build a small hand-crank generator to understand how mechanical energy converts to electrical energy. Learn about electromagnetism and basic power generation.',
+                meta: '⚡ Energy Conversion',
+                skill: 'Physics · Mechanics',
+                difficulty: 'beginner',
+                grad: 'grad-2'
+            }, {
+                id: 3,
+                title: 'Buzzer Board',
+                emoji: '🔊',
+                desc: 'Create sound with a piezo buzzer. Learn about frequency, tone generation, and how to build simple alarm and notification systems.',
+                meta: '🎵 Sound Generation',
+                skill: 'Tone · Frequency',
+                difficulty: 'beginner',
+                grad: 'grad-3'
+            }, {
+                id: 4,
+                title: 'Smart Parking System',
+                emoji: '🅿️',
+                desc: 'Build an automated parking system using an ultrasonic sensor to detect vehicle presence and a servo motor to control the gate. Learn about distance measurement, servo control, and smart parking management.',
+                meta: '🅿️ Parking Automation',
+                skill: 'Ultrasonic · Servo',
+                difficulty: 'intermediate',
+                grad: 'grad-4'
+            }, {
+                id: 5,
+                title: '7‑Segment Counter',
+                emoji: '🔢',
+                desc: 'Display numbers on a 7-segment display. Understand how to control multi-segment displays and create digital counters with Arduino.',
+                meta: '📊 Display',
+                skill: 'Segments · Counting',
+                difficulty: 'beginner',
+                grad: 'grad-6'
+            }, {
+                id: 6,
+                title: 'Fan Speed Controller',
+                emoji: '💨',
+                desc: 'Control a motor\'s speed using a potentiometer. Learn about PWM (Pulse Width Modulation), analog input, and variable speed control.',
+                meta: '🌀 PWM Control',
+                skill: 'Potentiometer · Motor',
+                difficulty: 'beginner',
+                grad: 'grad-12'
+            }, {
+                id: 7,
+                title: 'Water Filling & Level',
+                emoji: '💧',
+                desc: 'Build a system that detects water levels and automatically fills a tank. Learn about sensors, automation, and control logic.',
+                meta: '💦 Automation',
+                skill: 'Sensor · Control',
+                difficulty: 'intermediate',
+                grad: 'grad-5'
+            }, {
+                id: 8,
+                title: 'Digital Clock',
+                emoji: '🕐',
+                desc: 'Create a fully functional digital clock using an RTC module. Learn about timekeeping, display integration, and real-time systems.',
+                meta: '⏰ Timekeeping',
+                skill: 'RTC · Display',
+                difficulty: 'intermediate',
+                grad: 'grad-7'
+            }, {
+                id: 9,
+                title: 'Parking Sensor',
+                emoji: '🚗',
+                desc: 'Build a car parking assistant with ultrasonic sensor and buzzer. Learn about distance measurement, echo timing, and proximity alerts.',
+                meta: '📏 Distance',
+                skill: 'Ultrasonic · Proximity',
+                difficulty: 'intermediate',
+                grad: 'grad-8'
+            }, {
+                id: 10,
+                title: 'Weather Station',
+                emoji: '🌤️',
+                desc: 'Combine temperature, humidity, and pressure sensors to create a weather monitoring system. Learn about data collection and environmental sensing.',
+                meta: '🌡️ Environment',
+                skill: 'Sensors · Data',
+                difficulty: 'intermediate',
+                grad: 'grad-9'
+            }, {
+                id: 11,
+                title: 'Touch‑Controlled Door',
+                emoji: '🚪',
+                desc: 'Create a touch-activated servo mechanism that opens a door model. Learn about touch sensors, servo control, and user interaction.',
+                meta: '🖐️ Interaction',
+                skill: 'Touch · Servo',
+                difficulty: 'intermediate',
+                grad: 'grad-11'
+            }, {
+                id: 12,
+                title: 'Smart Motion Bulb',
+                emoji: '💡',
+                desc: 'Build a motion-activated light that only turns on when it\'s dark. Learn about PIR sensors, light sensors, and energy-efficient automation.',
+                meta: '🌙 Smart Lighting',
+                skill: 'PIR · LDR',
+                difficulty: 'intermediate',
+                grad: 'grad-13'
+            }, {
+                id: 13,
+                title: 'RF Door Alarm',
+                emoji: '🔔',
+                desc: 'Create a wireless door alarm system using RF transceivers. Learn about wireless communication, remote control, and security systems.',
+                meta: '📡 Wireless',
+                skill: 'RF · Remote',
+                difficulty: 'intermediate',
+                grad: 'grad-14'
+            }, {
+                id: 14,
+                title: 'Password Safe',
+                emoji: '🔒',
+                desc: 'Build a secure electronic lock system with a keypad and solenoid. Learn about input validation, security logic, and physical actuation.',
+                meta: '🔐 Security',
+                skill: 'Keypad · Solenoid',
+                difficulty: 'intermediate',
+                grad: 'grad-15'
+            }, {
+                id: 15,
+                title: 'Strength Game',
+                emoji: '🏋️',
+                desc: 'Create a game that measures grip strength using a force sensor. Learn about pressure sensing, analog-to-digital conversion, and interactive game design.',
+                meta: '💪 Force Sensing',
+                skill: 'FSR · Analog',
+                difficulty: 'intermediate',
+                grad: 'grad-17'
+            }, {
+                id: 16,
+                title: 'Fire Detection',
+                emoji: '🚒',
+                desc: 'Create a fire alarm system using smoke and flame sensors. Learn about gas sensing, flame detection, and emergency alert systems.',
+                meta: '🔥 Safety',
+                skill: 'Smoke · Flame',
+                difficulty: 'intermediate',
+                grad: 'grad-19'
+            }, {
+                id: 17,
+                title: 'Smart Irrigation',
+                emoji: '🌿',
+                desc: 'Build an automated plant watering system using soil moisture sensors and a water pump. Learn about feedback loops and resource management.',
+                meta: '🌱 Automation',
+                skill: 'Moisture · Pump',
+                difficulty: 'advanced',
+                grad: 'grad-10'
+            }, {
+                id: 18,
+                title: 'Heartbeat Monitor',
+                emoji: '❤️',
+                desc: 'Measure pulse rate using a heartbeat sensor and display on an OLED. Learn about biological signal processing and real-time data visualization.',
+                meta: '💓 Biosensing',
+                skill: 'Pulse · OLED',
+                difficulty: 'advanced',
+                grad: 'grad-16'
+            }, {
+                id: 19,
+                title: 'Weight Scale',
+                emoji: '⚖️',
+                desc: 'Build a digital weighing scale using a load cell and HX711 amplifier. Learn about precision measurement, calibration, and signal conditioning.',
+                meta: '📊 Measurement',
+                skill: 'Load Cell · Calibration',
+                difficulty: 'advanced',
+                grad: 'grad-18'
+            }, {
+                id: 20,
+                title: 'Sound System',
+                emoji: '🔊',
+                desc: 'Build a small audio system that can play tones and simple melodies. Learn about audio processing, waveform generation, and speaker control.',
+                meta: '🎵 Audio',
+                skill: 'Tone · Speaker',
+                difficulty: 'advanced',
+                grad: 'grad-20'
+            }, {
+                id: 21,
+                title: 'Autodriven Car',
+                emoji: '🚗',
+                desc: 'Build an autonomous car that navigates using ultrasonic sensors. Learn about obstacle avoidance, motor control, and autonomous decision-making.',
+                meta: '🤖 Robotics',
+                skill: 'Autonomous · Sensors',
+                difficulty: 'advanced',
+                grad: 'grad-21'
+            }, {
+                id: 22,
+                title: 'Line‑Tracking Robot',
+                emoji: '🤖',
+                desc: 'Create a robot that follows a black line using IR sensors. Learn about feedback control, sensor calibration, and precision movement.',
+                meta: '🎯 Precision',
+                skill: 'IR · Feedback',
+                difficulty: 'advanced',
+                grad: 'grad-22'
+            }, {
+                id: 23,
+                title: 'Digital Camera',
+                emoji: '📸',
+                desc: 'Build a simple digital camera using a camera module and SD card. Learn about image capture, data storage, and embedded imaging systems.',
+                meta: '📷 Imaging',
+                skill: 'Camera · Storage',
+                difficulty: 'advanced',
+                grad: 'grad-23'
+            }, {
+                id: 24,
+                title: 'Smart Home',
+                emoji: '🏠',
+                desc: 'Create a complete smart home system with lights, fans, and security. Learn about IoT, system integration, and intelligent home automation.',
+                meta: '🏡 IoT',
+                skill: 'Integration · Automation',
+                difficulty: 'advanced',
+                grad: 'grad-24'
+            }];
+
+            // ─── SORT: beginner → intermediate → advanced ──────────────
+            const order = { beginner: 0, intermediate: 1, advanced: 2 };
+            projectsData.sort((a, b) => order[a.difficulty] - order[b.difficulty]);
+
+            // ─── RENDER PROJECT CARDS ────────────────────────────────────
+            const grid = document.getElementById('projectsGrid');
+
+            projectsData.forEach((project) => {
+                const card = document.createElement('div');
+                card.className = 'project-card reveal';
+
+                // ── Use the exact project title as the image filename ──
+                // We try .png first (as the user has that), then .jpg, then .webp
+                const baseName = project.title;
+                const pngSrc = encodeURIComponent(baseName) + '.png';
+                const jpgSrc = encodeURIComponent(baseName) + '.jpg';
+                const webpSrc = encodeURIComponent(baseName) + '.webp';
+
+                card.innerHTML = `
+                    <div class="project-image ${project.grad}">
+                        <img
+                            src="${pngSrc}"
+                            alt="${project.title}"
+                            loading="lazy"
+                            data-jpg="${jpgSrc}"
+                            data-webp="${webpSrc}"
+                        />
+                        <div class="overlay"></div>
+                        <span class="badge ${project.difficulty}">${project.difficulty}</span>
+                        <span class="fallback-icon">${project.emoji}</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">
+                            <span class="emoji">${project.emoji}</span>
+                            ${project.title}
+                        </div>
+                        <div class="project-desc">${project.desc}</div>
+                        <div class="project-meta">
+                            <span>${project.meta}</span>
+                            <span class="skill-tag">${project.skill}</span>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+
+                // ─── SMART IMAGE FALLBACK CHAIN ──────────────────────
+                const img = card.querySelector('img');
+                const fallbackIcon = card.querySelector('.fallback-icon');
+                let attempts = 0;
+                const maxAttempts = 3;
+
+                img.addEventListener('error', function handler() {
+                    attempts++;
+                    if (attempts === 1) {
+                        // Try .jpg
+                        this.src = this.dataset.jpg;
+                    } else if (attempts === 2) {
+                        // Try .webp
+                        this.src = this.dataset.webp;
+                    } else {
+                        // All failed — show fallback icon
+                        this.style.display = 'none';
+                        if (fallbackIcon) {
+                            fallbackIcon.style.display = 'block';
+                            fallbackIcon.style.fontSize = '4rem';
+                            fallbackIcon.style.opacity = '0.3';
+                            fallbackIcon.style.zIndex = '1';
+                        }
+                    }
+                });
+            });
+
+            // ─── HEADER SCROLL ──────────────────────────────────────────
             const header = document.getElementById('header');
 
             window.addEventListener('scroll', function() {
@@ -1973,7 +2310,7 @@
                 }
             });
 
-            // ─── COUNTERS ───
+            // ─── COUNTERS ────────────────────────────────────────────────
             const counters = document.querySelectorAll('.counter');
             const counterObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2002,7 +2339,7 @@
 
             counters.forEach(c => counterObserver.observe(c));
 
-            // ─── SCROLL REVEAL ───
+            // ─── SCROLL REVEAL ──────────────────────────────────────────
             const revealElements = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2015,11 +2352,11 @@
 
             revealElements.forEach(el => revealObserver.observe(el));
 
-            // ─── PARTICLES ───
+            // ─── PARTICLES ──────────────────────────────────────────────
             const canvas = document.getElementById('particles-canvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
-            let particleCount = 50;
+            const particleCount = 50;
 
             function resizeCanvas() {
                 canvas.width = window.innerWidth;
@@ -2097,7 +2434,7 @@
 
             animateParticles();
 
-            // ─── SMOOTH NAV ───
+            // ─── SMOOTH NAV ─────────────────────────────────────────────
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const target = document.querySelector(this.getAttribute('href'));
@@ -2111,8 +2448,7 @@
                 });
             });
 
-            // ─── LOGO FALLBACK ───
-            // If 1.png doesn't load, try 1.jpg
+            // ─── LOGO FALLBACK ──────────────────────────────────────────
             const logoImgs = document.querySelectorAll('.logo-img, .logo-img-footer');
             logoImgs.forEach(img => {
                 img.addEventListener('error', function() {
