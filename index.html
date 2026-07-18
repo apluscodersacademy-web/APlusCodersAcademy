@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
     <style>
         /* ══════════════════════════════════════════════════════════════════
-           RESET & BASE
+           RESET & BASE (unchanged) 
            ══════════════════════════════════════════════════════════════════ */
         *,
         *::before,
@@ -181,13 +181,19 @@
             box-shadow: 0 8px 30px rgba(245, 158, 11, 0.08);
         }
 
-        .btn-sm {
-            padding: 10px 24px;
-            font-size: 0.8rem;
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           HEADER
+           HEADER (unchanged)
            ══════════════════════════════════════════════════════════════════ */
         .header {
             position: fixed;
@@ -303,7 +309,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           HERO
+           HERO (unchanged)
            ══════════════════════════════════════════════════════════════════ */
         .hero {
             min-height: 100vh;
@@ -678,7 +684,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           STATS BAR
+           STATS BAR (unchanged)
            ══════════════════════════════════════════════════════════════════ */
         .stats-bar {
             padding: 50px 0;
@@ -714,7 +720,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           LEARNING JOURNEY
+           LEARNING JOURNEY (unchanged)
            ══════════════════════════════════════════════════════════════════ */
         .journey {
             padding: 80px 0;
@@ -812,7 +818,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           CURRICULUM
+           CURRICULUM (unchanged)
            ══════════════════════════════════════════════════════════════════ */
         .curriculum {
             padding: 80px 0 90px;
@@ -929,7 +935,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           PROJECTS — with images named exactly after project title
+           PROJECTS (unchanged)
            ══════════════════════════════════════════════════════════════════ */
         .projects {
             padding: 80px 0 70px;
@@ -1092,18 +1098,18 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           CTA
+           ENROLL SECTION — UPDATED (dark background, left text + right form)
            ══════════════════════════════════════════════════════════════════ */
-        .cta {
-            padding: 70px 0 80px;
-            background: var(--primary-dark);
-            text-align: center;
+        .enroll {
+            padding: 80px 0 90px;
+            background: var(--primary-dark);  /* dark background like old CTA */
             position: relative;
             overflow: hidden;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .cta::before {
+        .enroll::before {
             content: '';
             position: absolute;
             top: -40%;
@@ -1116,7 +1122,7 @@
             animation: orbFloat 12s ease-in-out infinite alternate;
         }
 
-        .cta::after {
+        .enroll::after {
             content: '';
             position: absolute;
             bottom: -30%;
@@ -1129,84 +1135,203 @@
             animation: orbFloat 10s ease-in-out infinite alternate-reverse;
         }
 
-        .cta h2 {
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            font-weight: 800;
-            max-width: 700px;
-            margin: 0 auto 12px;
+        .enroll .container {
             position: relative;
-            z-index: 1;
-            letter-spacing: -0.02em;
-            color: var(--text-white);
+            z-index: 2;
         }
 
-        .cta h2 .highlight {
+        .enroll-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 20px;
+        }
+
+        /* Left side — CTA text */
+        .enroll-cta-text {
+            color: var(--text-white);
+            padding-top: 8px;
+        }
+
+        .enroll-cta-text h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .enroll-cta-text h2 .highlight {
             background: linear-gradient(135deg, var(--accent), #f97316);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .cta p {
+        .enroll-cta-text p {
             font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.6);
-            max-width: 520px;
-            margin: 0 auto 32px;
-            position: relative;
-            z-index: 1;
             line-height: 1.7;
+            max-width: 480px;
         }
 
-        .cta .btn-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* Right side — form card */
+        .enroll-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 38px 40px;
+            box-shadow: var(--shadow-hover);
             position: relative;
-            z-index: 1;
+            overflow: hidden;
         }
 
-        .cta .btn-primary {
-            background: #fff;
-            color: var(--primary-dark);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+        .enroll-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #f97316, var(--accent));
+            background-size: 200% 100%;
+            animation: shimmer 4s ease-in-out infinite;
         }
 
-        .cta .btn-primary:hover {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 8px 40px rgba(245, 158, 11, 0.4);
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
         }
 
-        .cta .btn-primary::before {
-            display: none;
+        .enroll-card .form-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
         }
 
-        .cta .btn-outline {
-            border-color: rgba(255, 255, 255, 0.15);
-            color: var(--text-white);
+        .enroll-card .form-sub {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 24px;
         }
 
-        .cta .btn-outline:hover {
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--bg-light);
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
             border-color: var(--accent);
-            background: rgba(245, 158, 11, 0.08);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.08);
+            background: #fff;
         }
 
-        .cta .tagline {
-            margin-top: 24px;
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-message {
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 16px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-message.success {
+            display: flex;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .form-message.error {
+            display: flex;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .form-message.loading {
+            display: flex;
+            background: #fef9c3;
+            color: #854d0e;
+            border: 1px solid #fde047;
+        }
+
+        .form-message .msg-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Tagline — centered below everything */
+        .enroll-tagline {
+            margin-top: 48px;
+            text-align: center;
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.4);
-            position: relative;
-            z-index: 1;
             letter-spacing: 0.04em;
             font-weight: 500;
+            position: relative;
+            z-index: 2;
         }
 
-        .cta .tagline .accent {
+        .enroll-tagline .accent {
             color: var(--accent);
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           FOOTER
+           FOOTER (unchanged)
            ══════════════════════════════════════════════════════════════════ */
         .footer {
             background: var(--primary-dark);
@@ -1298,7 +1423,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           RESPONSIVE
+           RESPONSIVE (adjusted for new layout)
            ══════════════════════════════════════════════════════════════════ */
         @media (max-width: 1024px) {
             .hero .container {
@@ -1340,6 +1465,17 @@
             }
             .projects-grid {
                 grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
+            .enroll-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .enroll-cta-text {
+                text-align: center;
+            }
+            .enroll-cta-text p {
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
@@ -1450,10 +1586,10 @@
             .project-card .project-body .project-desc {
                 font-size: 0.8rem;
             }
-            .cta h2 {
+            .enroll-cta-text h2 {
                 font-size: 1.6rem;
             }
-            .cta p {
+            .enroll-cta-text p {
                 font-size: 0.95rem;
             }
             .btn {
@@ -1479,6 +1615,16 @@
             }
             .footer .footer-tagline {
                 font-size: 0.65rem;
+            }
+            .enroll-card {
+                padding: 24px 20px 28px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .enroll-tagline {
+                font-size: 0.75rem;
             }
         }
 
@@ -1568,10 +1714,10 @@
                 padding: 10px 22px;
                 font-size: 0.8rem;
             }
-            .cta h2 {
+            .enroll-cta-text h2 {
                 font-size: 1.4rem;
             }
-            .cta p {
+            .enroll-cta-text p {
                 font-size: 0.85rem;
             }
             .logo {
@@ -1590,6 +1736,21 @@
             }
             .footer .footer-tagline {
                 font-size: 0.6rem;
+            }
+            .enroll-card {
+                padding: 18px 14px 22px;
+            }
+            .enroll-card .form-title {
+                font-size: 1.1rem;
+            }
+            .form-group input,
+            .form-group textarea {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            .enroll-tagline {
+                font-size: 0.7rem;
+                margin-top: 32px;
             }
         }
 
@@ -1627,7 +1788,7 @@
                 <li><a href="#journey">Journey</a></li>
                 <li><a href="#curriculum">Curriculum</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#cta" class="nav-cta">Enroll Now</a></li>
+                <li><a href="#enroll" class="nav-cta">Enroll Now</a></li>
             </ul>
         </div>
     </header>
@@ -1949,7 +2110,7 @@
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ PROJECTS — images named exactly after project title ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ PROJECTS ════════════════════════════════════════════ -->
     <section class="projects" id="projects">
         <div class="container">
             <div class="text-center reveal">
@@ -1958,24 +2119,71 @@
                 <p class="section-sub">Every project is a milestone. From the first LED to a complete smart home.</p>
             </div>
             <div class="projects-grid" id="projectsGrid">
-                <!-- Projects injected by JavaScript in sorted order -->
+                <!-- Projects injected by JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ CTA ════════════════════════════════════════════ -->
-    <section class="cta" id="cta">
+    <!-- ════════════════════════════════════════════ ENROLL SECTION (merged with CTA) ════════════════════════════════════════════ -->
+    <section class="enroll" id="enroll">
         <div class="container">
-            <h2 class="reveal">Ready to start the <span class="highlight">journey</span>?</h2>
-            <p class="reveal">
-                34+ sessions. 100+ topics. 20+ projects. From the atom to the smart home —
-                your child will build, code, and create like an engineer.
-            </p>
-            <div class="btn-group reveal">
-                <a href="#" class="btn btn-primary">📩 Enroll Now — Limited Spots</a>
-                <a href="#curriculum" class="btn btn-outline">📘 View Curriculum</a>
+            <div class="enroll-wrapper">
+                <!-- Left side: CTA text -->
+                <div class="enroll-cta-text reveal">
+                    <h2>Ready to start the <span class="highlight">journey</span>?</h2>
+                    <p>
+                        34+ sessions. 100+ topics. 20+ projects. From the atom to the smart home —
+                        your child will build, code, and create like an engineer.
+                    </p>
+                </div>
+
+                <!-- Right side: Form -->
+                <div class="enroll-card reveal">
+                    <div class="form-title">📋 Secure your spot today</div>
+                    <div class="form-sub">Fill in the form below and we'll get back to you within 24 hours.</div>
+
+                    <form id="enrollForm" onsubmit="return handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="studentName">Student Name <span class="required">*</span></label>
+                                <input type="text" id="studentName" placeholder="e.g. Ahmed Mohamed" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="studentAge">Age <span class="required">*</span></label>
+                                <input type="number" id="studentAge" placeholder="e.g. 12" min="10" max="60" required />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="studentGrade">Grade / Class <span class="required">*</span></label>
+                                <input type="text" id="studentGrade" placeholder="e.g. Grade 7" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhoneNumber">Parent Phone <span class="required">*</span></label>
+                                <input type="tel" id="contactPhoneNumber" placeholder="e.g. 01012345678" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="talkToUs">Anything you'd like to tell us?</label>
+                            <textarea id="talkToUs" placeholder="Any special requests, questions, or comments…"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                            📩 Enroll Now
+                        </button>
+
+                        <div class="form-message" id="formMessage">
+                            <span class="msg-icon"></span>
+                            <span class="msg-text"></span>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="tagline reveal">
+
+            <!-- Tagline - centered below -->
+            <div class="enroll-tagline reveal">
                 💡 <span class="accent">Turning ideas into reality</span>, one circuit at a time.
             </div>
         </div>
@@ -2006,6 +2214,10 @@
     <script>
         (function() {
             'use strict';
+
+            // ─── GOOGLE SHEETS SCRIPT URL ──────────────────────────────
+            const SCRIPT_URL =
+                'https://script.google.com/macros/s/AKfycbxTqTShIsn1_8VbWQcrNXOkaXT4ZZ-P1oEUD-aF2wr3FBQ7ZCeE4vTmywJacyzYzVKE/exec';
 
             // ─── PROJECT DATA ────────────────────────────────────────────
             const projectsData = [{
@@ -2226,19 +2438,17 @@
                 grad: 'grad-24'
             }];
 
-            // ─── SORT: beginner → intermediate → advanced ──────────────
+            // ─── SORT ────────────────────────────────────────────────────
             const order = { beginner: 0, intermediate: 1, advanced: 2 };
             projectsData.sort((a, b) => order[a.difficulty] - order[b.difficulty]);
 
-            // ─── RENDER PROJECT CARDS ────────────────────────────────────
+            // ─── RENDER PROJECTS ────────────────────────────────────────
             const grid = document.getElementById('projectsGrid');
 
             projectsData.forEach((project) => {
                 const card = document.createElement('div');
                 card.className = 'project-card reveal';
 
-                // ── Use the exact project title as the image filename ──
-                // We try .png first (as the user has that), then .jpg, then .webp
                 const baseName = project.title;
                 const pngSrc = encodeURIComponent(baseName) + '.png';
                 const jpgSrc = encodeURIComponent(baseName) + '.jpg';
@@ -2272,22 +2482,17 @@
 
                 grid.appendChild(card);
 
-                // ─── SMART IMAGE FALLBACK CHAIN ──────────────────────
                 const img = card.querySelector('img');
                 const fallbackIcon = card.querySelector('.fallback-icon');
                 let attempts = 0;
-                const maxAttempts = 3;
 
                 img.addEventListener('error', function handler() {
                     attempts++;
                     if (attempts === 1) {
-                        // Try .jpg
                         this.src = this.dataset.jpg;
                     } else if (attempts === 2) {
-                        // Try .webp
                         this.src = this.dataset.webp;
                     } else {
-                        // All failed — show fallback icon
                         this.style.display = 'none';
                         if (fallbackIcon) {
                             fallbackIcon.style.display = 'block';
@@ -2319,8 +2524,7 @@
                         const target = parseInt(el.getAttribute('data-target'), 10);
                         let current = 0;
                         const increment = Math.ceil(target / 50);
-                        const duration = 1500;
-                        const stepTime = Math.floor(duration / 50);
+                        const stepTime = 1500 / 50;
 
                         const timer = setInterval(() => {
                             current += increment;
@@ -2382,7 +2586,6 @@
                 update() {
                     this.x += this.speedX;
                     this.y += this.speedY;
-
                     if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                     if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
                 }
@@ -2406,7 +2609,6 @@
                         const dx = particles[i].x - particles[j].x;
                         const dy = particles[i].y - particles[j].y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
-
                         if (dist < maxDist) {
                             const opacity = (1 - dist / maxDist) * 0.08;
                             ctx.beginPath();
@@ -2422,12 +2624,8 @@
 
             function animateParticles() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-
+                particles.forEach(p => { p.update();
+                    p.draw(); });
                 connectParticles();
                 requestAnimationFrame(animateParticles);
             }
@@ -2455,6 +2653,106 @@
                     this.src = '1.jpg';
                 });
             });
+
+            // ─── ENROLL FORM — JSONP to Google Sheets ──────────────────
+            const form = document.getElementById('enrollForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const messageEl = document.getElementById('formMessage');
+
+            function showMessage(type, text) {
+                messageEl.className = 'form-message ' + type;
+                messageEl.querySelector('.msg-text').textContent = text;
+                const icons = {
+                    success: '✅',
+                    error: '❌',
+                    loading: '⏳'
+                };
+                messageEl.querySelector('.msg-icon').textContent = icons[type] || 'ℹ️';
+                messageEl.style.display = 'flex';
+            }
+
+            function hideMessage() {
+                messageEl.style.display = 'none';
+            }
+
+            function jsonpRequest(url) {
+                return new Promise((resolve, reject) => {
+                    const callbackName = 'jsonp_callback_' + Date.now();
+                    const script = document.createElement('script');
+                    script.id = 'jsonp_' + Date.now();
+
+                    window[callbackName] = function(data) {
+                        delete window[callbackName];
+                        if (document.body.contains(script)) {
+                            script.remove();
+                        }
+                        resolve(data);
+                    };
+
+                    script.onerror = function() {
+                        delete window[callbackName];
+                        if (document.body.contains(script)) {
+                            script.remove();
+                        }
+                        reject(new Error('JSONP request failed'));
+                    };
+
+                    const separator = url.includes('?') ? '&' : '?';
+                    script.src = url + separator + 'callback=' + callbackName;
+                    document.body.appendChild(script);
+                });
+            }
+
+            async function handleSubmit(e) {
+                e.preventDefault();
+                hideMessage();
+
+                const studentName = document.getElementById('studentName').value.trim();
+                const studentAge = document.getElementById('studentAge').value.trim();
+                const studentGrade = document.getElementById('studentGrade').value.trim();
+                const contactPhoneNumber = document.getElementById('contactPhoneNumber').value.trim();
+                const talkToUs = document.getElementById('talkToUs').value.trim();
+
+                if (!studentName || !studentAge || !studentGrade || !contactPhoneNumber) {
+                    showMessage('error', 'Please fill in all required fields.');
+                    return false;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = '⏳ Submitting…';
+                showMessage('loading', 'Sending your enrollment…');
+
+                try {
+                    const params = new URLSearchParams({
+                        action: 'add',
+                        studentName: studentName,
+                        studentAge: studentAge,
+                        studentGrade: studentGrade,
+                        contactPhoneNumber: contactPhoneNumber,
+                        talkToUs: talkToUs || ''
+                    });
+
+                    const url = SCRIPT_URL + '?' + params.toString();
+                    const result = await jsonpRequest(url);
+
+                    if (result.status === 'success') {
+                        showMessage('success', ' Submitted Successfully! We\'ll contact you soon.');
+                        form.reset();
+                    } else {
+                        showMessage('error', '❌ ' + (result.message || 'Something went wrong. Please try again.'));
+                    }
+                } catch (err) {
+                    showMessage('error', '❌ Network error. Please check your connection and try again.');
+                    console.error('Enrollment error:', err);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '📩 Enroll Now';
+                }
+
+                return false;
+            }
+
+            window.handleSubmit = handleSubmit;
 
         })();
     </script>
