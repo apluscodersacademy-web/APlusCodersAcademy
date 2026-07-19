@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
     <style>
         /* ══════════════════════════════════════════════════════════════════
-           RESET & BASE (unchanged) 
+           RESET & BASE
            ══════════════════════════════════════════════════════════════════ */
         *,
         *::before,
@@ -193,7 +193,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           HEADER (unchanged)
+           HEADER
            ══════════════════════════════════════════════════════════════════ */
         .header {
             position: fixed;
@@ -309,7 +309,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           HERO (unchanged)
+           HERO
            ══════════════════════════════════════════════════════════════════ */
         .hero {
             min-height: 100vh;
@@ -684,7 +684,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           STATS BAR (unchanged)
+           STATS BAR
            ══════════════════════════════════════════════════════════════════ */
         .stats-bar {
             padding: 50px 0;
@@ -720,7 +720,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           LEARNING JOURNEY (unchanged)
+           LEARNING JOURNEY — UPDATED 9 PHASES (no session badges)
            ══════════════════════════════════════════════════════════════════ */
         .journey {
             padding: 80px 0;
@@ -742,7 +742,7 @@
             gap: 0;
             margin-top: 48px;
             position: relative;
-            max-width: 700px;
+            max-width: 760px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -803,10 +803,11 @@
             margin-bottom: 2px;
         }
 
-        .journey-step .step-content p {
+        .journey-step .step-content .phase-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-top: 2px;
         }
 
         .journey-step .step-number {
@@ -818,7 +819,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           CURRICULUM (unchanged)
+           CURRICULUM — counters removed
            ══════════════════════════════════════════════════════════════════ */
         .curriculum {
             padding: 80px 0 90px;
@@ -898,17 +899,6 @@
             color: var(--text-dark);
         }
 
-        .curriculum-card .card-header .count {
-            margin-left: auto;
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--accent);
-            background: rgba(245, 158, 11, 0.08);
-            padding: 2px 12px;
-            border-radius: 100px;
-            border: 1px solid rgba(245, 158, 11, 0.08);
-        }
-
         .topic-tags {
             display: flex;
             flex-wrap: wrap;
@@ -935,7 +925,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           PROJECTS (unchanged)
+           PROJECTS
            ══════════════════════════════════════════════════════════════════ */
         .projects {
             padding: 80px 0 70px;
@@ -1098,11 +1088,11 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           ENROLL SECTION — UPDATED (dark background, left text + right form)
+           ENROLL SECTION
            ══════════════════════════════════════════════════════════════════ */
         .enroll {
             padding: 80px 0 90px;
-            background: var(--primary-dark);  /* dark background like old CTA */
+            background: var(--primary-dark);
             position: relative;
             overflow: hidden;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1148,7 +1138,6 @@
             margin-top: 20px;
         }
 
-        /* Left side — CTA text */
         .enroll-cta-text {
             color: var(--text-white);
             padding-top: 8px;
@@ -1174,7 +1163,6 @@
             max-width: 480px;
         }
 
-        /* Right side — form card */
         .enroll-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -1314,7 +1302,6 @@
             font-size: 1.2rem;
         }
 
-        /* Tagline — centered below everything */
         .enroll-tagline {
             margin-top: 48px;
             text-align: center;
@@ -1331,7 +1318,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           FOOTER (unchanged)
+           FOOTER
            ══════════════════════════════════════════════════════════════════ */
         .footer {
             background: var(--primary-dark);
@@ -1423,7 +1410,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           RESPONSIVE (adjusted for new layout)
+           RESPONSIVE
            ══════════════════════════════════════════════════════════════════ */
         @media (max-width: 1024px) {
             .hero .container {
@@ -1559,6 +1546,9 @@
                 width: 40px;
                 height: 40px;
                 font-size: 1.1rem;
+            }
+            .journey-step .step-content .phase-desc {
+                font-size: 0.8rem;
             }
             .curriculum-card {
                 padding: 20px 18px 24px;
@@ -1707,7 +1697,7 @@
             .journey-step .step-content h4 {
                 font-size: 0.9rem;
             }
-            .journey-step .step-content p {
+            .journey-step .step-content .phase-desc {
                 font-size: 0.75rem;
             }
             .btn {
@@ -1823,7 +1813,7 @@
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="number"><span class="counter" data-target="34">0</span>+</span>
+                        <span class="number"><span class="counter" data-target="35">0</span>+</span>
                         <span class="label">Sessions</span>
                     </div>
                     <div class="stat">
@@ -1877,7 +1867,7 @@
     <section class="stats-bar" id="stats">
         <div class="container">
             <div class="stat-item">
-                <div class="number"><span class="counter" data-target="34">0</span>+</div>
+                <div class="number"><span class="counter" data-target="35">0</span>+</div>
                 <div class="label">Structured Sessions</div>
             </div>
             <div class="stat-item">
@@ -1895,76 +1885,111 @@
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ LEARNING JOURNEY ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ LEARNING JOURNEY — 9 PHASES (no session badges) ════════════════════════════════════════════ -->
     <section class="journey" id="journey">
         <div class="container">
             <div class="text-center reveal">
                 <span class="section-tag">🚀 Your Path</span>
                 <h2 class="section-title">The <span class="highlight">Learning Journey</span></h2>
-                <p class="section-sub">A structured progression from absolute beginner to confident maker.</p>
+                <p class="section-sub">A structured progression from absolute beginner to confident maker across 9 phases.</p>
             </div>
             <div class="journey-timeline">
+
+                <!-- Phase 1 -->
                 <div class="journey-step reveal">
                     <div class="step-icon">⚛️</div>
                     <div class="step-content">
                         <span class="step-number">Phase 1</span>
-                        <h4>Learn Electronics</h4>
-                        <p>Atom structure, electricity, Ohm's law, breadboards, and basic circuits.</p>
+                        <h4>Electronics Explorer</h4>
+                        <div class="phase-desc">Learn the fundamentals of electricity, circuits, and how components work together. Build your first LED and button projects to understand the basics of electronics.</div>
                     </div>
                 </div>
+
+                <!-- Phase 2 -->
                 <div class="journey-step reveal">
                     <div class="step-icon">💻</div>
                     <div class="step-content">
                         <span class="step-number">Phase 2</span>
-                        <h4>Learn Programming</h4>
-                        <p>Variables, data types, loops, conditionals, functions, and logic.</p>
+                        <h4>Arduino Foundations</h4>
+                        <div class="phase-desc">Dive into programming with Arduino. Learn how to write code, control outputs, and understand the logic behind every smart device.</div>
                     </div>
                 </div>
+
+                <!-- Phase 3 -->
                 <div class="journey-step reveal">
                     <div class="step-icon">⚙️</div>
                     <div class="step-content">
                         <span class="step-number">Phase 3</span>
-                        <h4>Control Hardware</h4>
-                        <p>LEDs, buzzers, motors, servos, and actuators with Arduino.</p>
+                        <h4>Embedded Devices Builder</h4>
+                        <div class="phase-desc">Connect sensors and actuators to create real-world devices. Build water filling systems and learn how embedded systems make decisions.</div>
                     </div>
                 </div>
+
+                <!-- Phase 4 -->
                 <div class="journey-step reveal">
                     <div class="step-icon">📡</div>
                     <div class="step-content">
                         <span class="step-number">Phase 4</span>
-                        <h4>Use Sensors</h4>
-                        <p>Ultrasonic, temperature, moisture, PIR, light, and many more.</p>
+                        <h4>Smart Sensors Engineer</h4>
+                        <div class="phase-desc">Master the art of sensing the world. Use ultrasonic, temperature, humidity, and other sensors to build intelligent systems.</div>
                     </div>
                 </div>
+
+                <!-- Phase 5 -->
                 <div class="journey-step reveal">
                     <div class="step-icon">🤖</div>
                     <div class="step-content">
                         <span class="step-number">Phase 5</span>
-                        <h4>Build Robots</h4>
-                        <p>Line‑tracking, Bluetooth‑controlled, and autonomous cars.</p>
+                        <h4>Motion &amp; Automation Engineer</h4>
+                        <div class="phase-desc">Bring motion to your projects with motors and servos. Build automated systems that respond to touch, motion, and light.</div>
                     </div>
                 </div>
+
+                <!-- Phase 6 -->
                 <div class="journey-step reveal">
-                    <div class="step-icon">🏠</div>
+                    <div class="step-icon">🔒</div>
                     <div class="step-content">
                         <span class="step-number">Phase 6</span>
-                        <h4>Smart Home</h4>
-                        <p>Automation systems, security, IoT, and complete integration.</p>
+                        <h4>Smart Security Engineer</h4>
+                        <div class="phase-desc">Create secure systems with RF remotes, password locks, and alarms. Learn how to protect and control access to devices.</div>
                     </div>
                 </div>
+
+                <!-- Phase 7 -->
+                <div class="journey-step reveal">
+                    <div class="step-icon">🎵</div>
+                    <div class="step-content">
+                        <span class="step-number">Phase 7</span>
+                        <h4>Robotics &amp; Audio Engineer</h4>
+                        <div class="phase-desc">Build robots that follow lines, avoid obstacles, and even make music. Combine audio processing with robotics for interactive projects.</div>
+                    </div>
+                </div>
+
+                <!-- Phase 8 -->
+                <div class="journey-step reveal">
+                    <div class="step-icon">🧠</div>
+                    <div class="step-content">
+                        <span class="step-number">Phase 8</span>
+                        <h4>Embedded Systems Professional</h4>
+                        <div class="phase-desc">Dive deep into professional techniques like interrupts, pointers, and power management. Learn how to optimize and scale your projects.</div>
+                    </div>
+                </div>
+
+                <!-- Phase 9 -->
                 <div class="journey-step reveal">
                     <div class="step-icon">🚀</div>
                     <div class="step-content">
-                        <span class="step-number">Phase 7</span>
-                        <h4>Graduate</h4>
-                        <p>Capstone project, certification, and portfolio of 20+ creations.</p>
+                        <span class="step-number">Phase 9</span>
+                        <h4>Innovation Capstone</h4>
+                        <div class="phase-desc">Bring everything together in a final project. Design, build, and present a complete system that showcases all your skills.</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ CURRICULUM ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ CURRICULUM — counters removed ════════════════════════════════════════════ -->
     <section class="curriculum" id="curriculum">
         <div class="container">
             <div class="text-center reveal">
@@ -1978,7 +2003,6 @@
                     <div class="card-header">
                         <span class="icon">⚛️</span>
                         <h4>Fundamentals of Electronics</h4>
-                        <span class="count">12</span>
                     </div>
                     <div class="topic-tags">
                         <span class="tag">Atom structure</span>
@@ -2001,7 +2025,6 @@
                     <div class="card-header">
                         <span class="icon">💻</span>
                         <h4>Programming &amp; Logic</h4>
-                        <span class="count">14</span>
                     </div>
                     <div class="topic-tags">
                         <span class="tag">What is Programming?</span>
@@ -2026,7 +2049,6 @@
                     <div class="card-header">
                         <span class="icon">📡</span>
                         <h4>Sensors — Input</h4>
-                        <span class="count">16</span>
                     </div>
                     <div class="topic-tags">
                         <span class="tag">Ultrasonic (SR04)</span>
@@ -2053,7 +2075,6 @@
                     <div class="card-header">
                         <span class="icon">⚙️</span>
                         <h4>Actuators &amp; Motors</h4>
-                        <span class="count">10</span>
                     </div>
                     <div class="topic-tags">
                         <span class="tag">LED / Button / Buzzer</span>
@@ -2074,7 +2095,6 @@
                     <div class="card-header">
                         <span class="icon">📶</span>
                         <h4>Communication Protocols</h4>
-                        <span class="count">8</span>
                     </div>
                     <div class="topic-tags">
                         <span class="tag">Intro to Communication Protocols</span>
@@ -2093,7 +2113,6 @@
                     <div class="card-header">
                         <span class="icon">🧠</span>
                         <h4>Advanced Concepts</h4>
-                        <span class="count">8</span>
                     </div>
                     <div class="topic-tags">
                         <span class="tag">ADC (Analog to Digital Converter)</span>
@@ -2124,7 +2143,7 @@
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ ENROLL SECTION (merged with CTA) ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ ENROLL SECTION ════════════════════════════════════════════ -->
     <section class="enroll" id="enroll">
         <div class="container">
             <div class="enroll-wrapper">
@@ -2132,7 +2151,7 @@
                 <div class="enroll-cta-text reveal">
                     <h2>Ready to start the <span class="highlight">journey</span>?</h2>
                     <p>
-                        34+ sessions. 100+ topics. 20+ projects. From the atom to the smart home —
+                        35 sessions across 9 phases. 100+ topics. 20+ projects. From the atom to the smart home —
                         your child will build, code, and create like an engineer.
                     </p>
                 </div>
