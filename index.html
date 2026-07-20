@@ -37,6 +37,10 @@
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             --shadow-hover: 0 20px 60px rgba(10, 46, 74, 0.12);
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --confirm-phone-bg: #f9fafb;
+            --confirm-phone-border: #d1f0db;
+            --confirm-phone-accent: #86efac;
+            --confirm-phone-text: #374151;
         }
 
         html {
@@ -190,6 +194,47 @@
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
+        }
+
+        /* ─── Toggle buttons ─── */
+        .toggle-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            padding: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: transparent;
+            color: var(--text-muted);
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .toggle-btn:hover {
+            color: var(--text-dark);
+        }
+
+        .toggle-btn.active {
+            background: var(--bg-card);
+            color: var(--text-dark);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border);
+        }
+
+        .toggle-btn .icon {
+            margin-right: 6px;
         }
 
         /* ══════════════════════════════════════════════════════════════════
@@ -720,7 +765,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           LEARNING JOURNEY — UPDATED 9 PHASES (no session badges)
+           LEARNING JOURNEY — 9 PHASES
            ══════════════════════════════════════════════════════════════════ */
         .journey {
             padding: 80px 0;
@@ -819,7 +864,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           CURRICULUM — counters removed
+           CURRICULUM
            ══════════════════════════════════════════════════════════════════ */
         .curriculum {
             padding: 80px 0 90px;
@@ -1088,7 +1133,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           ENROLL SECTION
+           ENROLL SECTION — redesigned
            ══════════════════════════════════════════════════════════════════ */
         .enroll {
             padding: 80px 0 90px;
@@ -1138,31 +1183,109 @@
             margin-top: 20px;
         }
 
-        .enroll-cta-text {
+        /* ─── LEFT SIDE ─── */
+        .enroll-left {
             color: var(--text-white);
             padding-top: 8px;
         }
 
-        .enroll-cta-text h2 {
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
+        .enroll-left .badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            margin-bottom: 16px;
         }
 
-        .enroll-cta-text h2 .highlight {
+        .enroll-left h2 {
+            font-size: clamp(2rem, 3.2vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .enroll-left h2 .highlight {
             background: linear-gradient(135deg, var(--accent), #f97316);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .enroll-cta-text p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
+        .enroll-left .desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.65);
             line-height: 1.7;
+            margin-bottom: 28px;
             max-width: 480px;
         }
 
+        .enroll-left .desc strong {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .enroll-left .option-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 460px;
+        }
+
+        .enroll-left .option-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px 20px;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+        }
+
+        .enroll-left .option-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        .enroll-left .option-card .opt-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .enroll-left .option-card .opt-title .icon {
+            margin-right: 8px;
+        }
+
+        .enroll-left .option-card .opt-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.5;
+        }
+
+        .enroll-left .option-card .opt-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            background: rgba(245, 158, 11, 0.12);
+            padding: 2px 12px;
+            border-radius: 100px;
+            margin-top: 8px;
+        }
+
+        .enroll-left .option-card .opt-tag.host {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.12);
+        }
+
+        /* ─── RIGHT SIDE — FORM CARD ─── */
         .enroll-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -1198,15 +1321,57 @@
             font-size: 1.3rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .enroll-card .form-sub {
             font-size: 0.85rem;
             color: var(--text-light);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
+        /* ─── TOGGLE BUTTONS ─── */
+        .toggle-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            padding: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: transparent;
+            color: var(--text-muted);
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .toggle-btn:hover {
+            color: var(--text-dark);
+        }
+
+        .toggle-btn.active {
+            background: var(--bg-card);
+            color: var(--text-dark);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border);
+        }
+
+        .toggle-btn .icon {
+            margin-right: 6px;
+        }
+
+        /* ─── FORM FIELDS ─── */
         .form-group {
             margin-bottom: 18px;
         }
@@ -1266,6 +1431,235 @@
             gap: 16px;
         }
 
+        /* ─── Phone visual confirmation — compact & elegant redesign ─── */
+        .phone-confirm-area {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            background: var(--confirm-phone-bg);
+            border: 1px solid var(--confirm-phone-border);
+            border-left: 3px solid var(--confirm-phone-accent);
+            padding: 8px 14px;
+            display: none;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            transition: all 0.3s ease;
+            animation: fadeSlideIn 0.3s ease;
+        }
+
+        .phone-confirm-area.visible {
+            display: flex;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                max-height: 60px;
+            }
+        }
+
+        .phone-confirm-area .phone-number-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--confirm-phone-text);
+            background: #ffffff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .phone-confirm-area .phone-number-display .phone-icon {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .phone-confirm-area .phone-number-display .number {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: 0.03em;
+            background: #f8fafc;
+            padding: 1px 8px;
+            border-radius: 4px;
+        }
+
+        .phone-confirm-area .confirm-checkbox {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #4b5563;
+            cursor: pointer;
+            user-select: none;
+            padding: 3px 6px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .phone-confirm-area .confirm-checkbox:hover {
+            background: rgba(134, 239, 172, 0.12);
+            color: #374151;
+        }
+
+        .phone-confirm-area .confirm-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #22c55e;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin: 0;
+        }
+
+        .phone-confirm-area .confirm-checkbox .check-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            line-height: 1;
+        }
+
+        .phone-confirm-area .confirm-checkbox .check-label .check-icon {
+            font-size: 0.9rem;
+            color: #22c55e;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .phone-confirm-area .confirm-checkbox input[type="checkbox"]:checked+.check-label .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ─── PHASE DETAILS DISPLAY ─── */
+        .phase-detail-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            margin-top: 16px;
+            transition: var(--transition);
+            display: none;
+        }
+
+        .phase-detail-box.visible {
+            display: block;
+            animation: fadeSlide 0.3s ease;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .phase-detail-box .phase-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .phase-detail-box .phase-head .phase-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .phase-detail-box .phase-head .phase-price {
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+        }
+
+        .phase-detail-box .phase-head .phase-price span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .phase-detail-box .phase-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .phase-detail-box .phase-meta .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .phase-detail-box .phase-desc-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        .phase-detail-box .phase-offline {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.08);
+            padding: 2px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(34, 197, 94, 0.15);
+            margin-top: 6px;
+        }
+
+        /* ─── HOST GROUP FIELDS ─── */
+        .host-fields {
+            display: none;
+            animation: fadeSlide 0.3s ease;
+            margin-top: 6px;
+            border-top: 1px dashed var(--border);
+            padding-top: 18px;
+        }
+
+        .host-fields.visible {
+            display: block;
+        }
+
+        .host-fields .host-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 12px;
+        }
+
+        /* ─── FORM MESSAGE ─── */
         .form-message {
             padding: 14px 18px;
             border-radius: var(--radius-sm);
@@ -1302,6 +1696,7 @@
             font-size: 1.2rem;
         }
 
+        /* ─── TAGLINE ─── */
         .enroll-tagline {
             margin-top: 48px;
             text-align: center;
@@ -1457,12 +1852,22 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-            .enroll-cta-text {
-                text-align: center;
+            .enroll-left {
+                text-align: left;
             }
-            .enroll-cta-text p {
-                margin-left: auto;
-                margin-right: auto;
+            .enroll-left .desc {
+                max-width: 100%;
+            }
+            .enroll-left .option-cards {
+                max-width: 100%;
+            }
+            .phone-confirm-area {
+                gap: 10px 14px;
+                padding: 8px 12px;
+            }
+            .phone-confirm-area .phone-number-display {
+                font-size: 0.8rem;
+                padding: 4px 10px;
             }
         }
 
@@ -1576,10 +1981,10 @@
             .project-card .project-body .project-desc {
                 font-size: 0.8rem;
             }
-            .enroll-cta-text h2 {
+            .enroll-left h2 {
                 font-size: 1.6rem;
             }
-            .enroll-cta-text p {
+            .enroll-left .desc {
                 font-size: 0.95rem;
             }
             .btn {
@@ -1615,6 +2020,37 @@
             }
             .enroll-tagline {
                 font-size: 0.75rem;
+            }
+            .toggle-btn {
+                font-size: 0.75rem;
+                padding: 8px 10px;
+            }
+            .phase-detail-box .phase-head .phase-price {
+                font-size: 1.2rem;
+            }
+            .phone-confirm-area {
+                padding: 8px 12px;
+                gap: 8px 12px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .phone-confirm-area .phone-number-display {
+                font-size: 0.78rem;
+                padding: 4px 10px;
+                gap: 5px;
+            }
+            .phone-confirm-area .phone-number-display .number {
+                font-size: 0.82rem;
+                padding: 1px 6px;
+            }
+            .phone-confirm-area .confirm-checkbox {
+                font-size: 0.75rem;
+                gap: 5px;
+            }
+            .phone-confirm-area .confirm-checkbox input[type="checkbox"] {
+                width: 15px;
+                height: 15px;
             }
         }
 
@@ -1704,10 +2140,10 @@
                 padding: 10px 22px;
                 font-size: 0.8rem;
             }
-            .enroll-cta-text h2 {
+            .enroll-left h2 {
                 font-size: 1.4rem;
             }
-            .enroll-cta-text p {
+            .enroll-left .desc {
                 font-size: 0.85rem;
             }
             .logo {
@@ -1742,6 +2178,53 @@
                 font-size: 0.7rem;
                 margin-top: 32px;
             }
+            .toggle-group {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .toggle-btn {
+                font-size: 0.8rem;
+                padding: 10px 12px;
+            }
+            .phase-detail-box .phase-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .phase-detail-box .phase-head .phase-price {
+                font-size: 1.3rem;
+            }
+            .enroll-left .option-card .opt-desc {
+                font-size: 0.8rem;
+            }
+            .phone-confirm-area {
+                padding: 7px 10px;
+                gap: 6px 10px;
+                flex-direction: column;
+                align-items: stretch;
+                border-left-width: 3px;
+            }
+            .phone-confirm-area .phone-number-display {
+                font-size: 0.76rem;
+                padding: 4px 10px;
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                white-space: normal;
+            }
+            .phone-confirm-area .phone-number-display .number {
+                font-size: 0.8rem;
+                padding: 1px 6px;
+            }
+            .phone-confirm-area .confirm-checkbox {
+                font-size: 0.73rem;
+                justify-content: center;
+                width: 100%;
+                padding: 4px 0;
+            }
+            .phone-confirm-area .confirm-checkbox input[type="checkbox"] {
+                width: 15px;
+                height: 15px;
+            }
         }
 
         .text-center {
@@ -1755,6 +2238,9 @@
         }
         .mt-40 {
             margin-top: 40px;
+        }
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
@@ -1885,7 +2371,7 @@
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ LEARNING JOURNEY — 9 PHASES (no session badges) ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ LEARNING JOURNEY — 9 PHASES ════════════════════════════════════════════ -->
     <section class="journey" id="journey">
         <div class="container">
             <div class="text-center reveal">
@@ -1895,8 +2381,7 @@
             </div>
             <div class="journey-timeline">
 
-                <!-- Phase 1 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="1">
                     <div class="step-icon">⚛️</div>
                     <div class="step-content">
                         <span class="step-number">Phase 1</span>
@@ -1905,8 +2390,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 2 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="2">
                     <div class="step-icon">💻</div>
                     <div class="step-content">
                         <span class="step-number">Phase 2</span>
@@ -1915,8 +2399,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 3 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="3">
                     <div class="step-icon">⚙️</div>
                     <div class="step-content">
                         <span class="step-number">Phase 3</span>
@@ -1925,8 +2408,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 4 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="4">
                     <div class="step-icon">📡</div>
                     <div class="step-content">
                         <span class="step-number">Phase 4</span>
@@ -1935,8 +2417,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 5 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="5">
                     <div class="step-icon">🤖</div>
                     <div class="step-content">
                         <span class="step-number">Phase 5</span>
@@ -1945,8 +2426,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 6 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="6">
                     <div class="step-icon">🔒</div>
                     <div class="step-content">
                         <span class="step-number">Phase 6</span>
@@ -1955,8 +2435,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 7 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="7">
                     <div class="step-icon">🎵</div>
                     <div class="step-content">
                         <span class="step-number">Phase 7</span>
@@ -1965,8 +2444,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 8 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="8">
                     <div class="step-icon">🧠</div>
                     <div class="step-content">
                         <span class="step-number">Phase 8</span>
@@ -1975,8 +2453,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 9 -->
-                <div class="journey-step reveal">
+                <div class="journey-step reveal" data-phase="9">
                     <div class="step-icon">🚀</div>
                     <div class="step-content">
                         <span class="step-number">Phase 9</span>
@@ -1989,7 +2466,7 @@
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ CURRICULUM — counters removed ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ CURRICULUM ════════════════════════════════════════════ -->
     <section class="curriculum" id="curriculum">
         <div class="container">
             <div class="text-center reveal">
@@ -1998,7 +2475,6 @@
                 <p class="section-sub">Over 100 topics organised into 6 logical categories — pure learning.</p>
             </div>
             <div class="curriculum-grid">
-                <!-- Fundamentals -->
                 <div class="curriculum-card reveal">
                     <div class="card-header">
                         <span class="icon">⚛️</span>
@@ -2020,7 +2496,6 @@
                     </div>
                 </div>
 
-                <!-- Programming -->
                 <div class="curriculum-card reveal">
                     <div class="card-header">
                         <span class="icon">💻</span>
@@ -2044,7 +2519,6 @@
                     </div>
                 </div>
 
-                <!-- Sensors -->
                 <div class="curriculum-card reveal">
                     <div class="card-header">
                         <span class="icon">📡</span>
@@ -2070,7 +2544,6 @@
                     </div>
                 </div>
 
-                <!-- Actuators -->
                 <div class="curriculum-card reveal">
                     <div class="card-header">
                         <span class="icon">⚙️</span>
@@ -2090,7 +2563,6 @@
                     </div>
                 </div>
 
-                <!-- Communication -->
                 <div class="curriculum-card reveal">
                     <div class="card-header">
                         <span class="icon">📶</span>
@@ -2108,7 +2580,6 @@
                     </div>
                 </div>
 
-                <!-- Advanced -->
                 <div class="curriculum-card reveal">
                     <div class="card-header">
                         <span class="icon">🧠</span>
@@ -2138,30 +2609,58 @@
                 <p class="section-sub">Every project is a milestone. From the first LED to a complete smart home.</p>
             </div>
             <div class="projects-grid" id="projectsGrid">
-                <!-- Projects injected by JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════ ENROLL SECTION ════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════ ENROLL SECTION — redesigned ════════════════════════════════════════════ -->
     <section class="enroll" id="enroll">
         <div class="container">
             <div class="enroll-wrapper">
-                <!-- Left side: CTA text -->
-                <div class="enroll-cta-text reveal">
-                    <h2>Ready to start the <span class="highlight">journey</span>?</h2>
-                    <p>
-                        35 sessions across 9 phases. 100+ topics. 20+ projects. From the atom to the smart home —
-                        your child will build, code, and create like an engineer.
+                <div class="enroll-left reveal">
+                    <div class="badge">🚀 Ready to start?</div>
+                    <h2>Start the <span class="highlight">journey</span> today</h2>
+                    <p class="desc">
+                        <strong>35 sessions</strong> across 9 phases. <strong>100+ topics</strong>.
+                        <strong>20+ projects</strong>. From the atom to the smart home — your child will
+                        build, code, and create like an engineer.
                     </p>
+
+                    <div class="option-cards">
+                        <div class="option-card">
+                            <div class="opt-title"><span class="icon">👥</span> Join Group</div>
+                            <div class="opt-desc">
+                                Your child joins an existing group (5-8 Students) at our classroom location and learns alongside other students in a collaborative environment.
+                            </div>
+                            <span class="opt-tag">📍 At our classroom</span>
+                        </div>
+                        <div class="option-card">
+                            <div class="opt-title"><span class="icon">🏠</span> Host Private Group</div>
+                            <div class="opt-desc">
+                                Gather 5–8 students and host private sessions at your own location.
+                                Enjoy special discount offers.
+                            </div>
+                            <span class="opt-tag host">🏷️ Enjoy special Discount offers</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Right side: Form -->
                 <div class="enroll-card reveal">
-                    <div class="form-title">📋 Secure your spot today</div>
-                    <div class="form-sub">Fill in the form below and we'll get back to you within 24 hours.</div>
+                    <div class="form-title">📋 Secure your spot</div>
+                    <div class="form-sub">Choose how you'd like to join, then fill in the details.</div>
+
+                    <div class="toggle-group" id="toggleGroup">
+                        <button class="toggle-btn active" data-type="join" onclick="setEnrollmentType('join')">
+                            <span class="icon">👥</span> Join Group
+                        </button>
+                        <button class="toggle-btn" data-type="host" onclick="setEnrollmentType('host')">
+                            <span class="icon">🏠</span> Host Private Group
+                        </button>
+                    </div>
 
                     <form id="enrollForm" onsubmit="return handleSubmit(event)">
+                        <input type="hidden" name="enrollmentType" id="enrollmentType" value="join" />
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="studentName">Student Name <span class="required">*</span></label>
@@ -2180,13 +2679,114 @@
                             </div>
                             <div class="form-group">
                                 <label for="contactPhoneNumber">Parent Phone <span class="required">*</span></label>
-                                <input type="tel" id="contactPhoneNumber" placeholder="e.g. 01012345678" required />
+                                <input type="tel" id="contactPhoneNumber" placeholder="e.g. 01012345678" required oninput="updatePhoneDisplay()" />
+                            </div>
+                        </div>
+
+                        <div class="phone-confirm-area" id="phoneConfirmArea">
+                            <div class="phone-number-display">
+                                <span class="phone-icon">📱</span>
+                                <span class="number" id="displayPhoneNumber">—</span>
+                            </div>
+                            <label class="confirm-checkbox">
+                                <input type="checkbox" id="phoneConfirmCheckbox" />
+                                <span class="check-label">
+                                    <span class="check-icon">✓</span> Confirm number
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="schoolName">Student School Name <span class="required">*</span></label>
+                                <input type="text" id="schoolName" placeholder="e.g. Cairo International School" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="schoolRegion">School Region <span class="required">*</span></label>
+                                <input type="text" id="schoolRegion" placeholder="e.g. Nasr City" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="governorate">Governorate <span class="required">*</span></label>
+                            <select id="governorate" required>
+                                <option value="">— Select Governorate —</option>
+                                <option value="Alexandria">Alexandria</option>
+                                <option value="Aswan">Aswan</option>
+                                <option value="Asyut">Asyut</option>
+                                <option value="Beheira">Beheira</option>
+                                <option value="Beni Suef">Beni Suef</option>
+                                <option value="Cairo">Cairo</option>
+                                <option value="Dakahlia">Dakahlia</option>
+                                <option value="Damietta">Damietta</option>
+                                <option value="Faiyum">Faiyum</option>
+                                <option value="Gharbia">Gharbia</option>
+                                <option value="Giza">Giza</option>
+                                <option value="Ismailia">Ismailia</option>
+                                <option value="Kafr El Sheikh">Kafr El Sheikh</option>
+                                <option value="Luxor">Luxor</option>
+                                <option value="Matrouh">Matrouh</option>
+                                <option value="Minya">Minya</option>
+                                <option value="Monufia">Monufia</option>
+                                <option value="New Valley">New Valley</option>
+                                <option value="North Sinai">North Sinai</option>
+                                <option value="Port Said">Port Said</option>
+                                <option value="Qalyubia">Qalyubia</option>
+                                <option value="Qena">Qena</option>
+                                <option value="Red Sea">Red Sea</option>
+                                <option value="Sharqia">Sharqia</option>
+                                <option value="Sohag">Sohag</option>
+                                <option value="South Sinai">South Sinai</option>
+                                <option value="Suez">Suez</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phaseSelect">Select Phase <span class="required">*</span></label>
+                            <select id="phaseSelect" name="phase" required onchange="updatePhaseDetails()">
+                                <option value="">— Choose a phase —</option>
+                                <option value="1">Phase 1 – Electronics Explorer</option>
+                                <option value="2">Phase 2 – Arduino Foundations</option>
+                                <option value="3">Phase 3 – Embedded Devices Builder</option>
+                                <option value="4">Phase 4 – Smart Sensors Engineer</option>
+                                <option value="5">Phase 5 – Motion & Automation Engineer</option>
+                                <option value="6">Phase 6 – Smart Security Engineer</option>
+                                <option value="7">Phase 7 – Robotics & Audio Engineer</option>
+                                <option value="8">Phase 8 – Embedded Systems Professional</option>
+                                <option value="9">Phase 9 – Innovation Capstone</option>
+                            </select>
+                        </div>
+
+                        <div class="phase-detail-box" id="phaseDetailBox">
+                            <div class="phase-head">
+                                <span class="phase-name" id="detailPhaseName">—</span>
+                                <span class="phase-price" id="detailPhasePrice">—</span>
+                            </div>
+                            <div class="phase-meta">
+                                <span class="meta-item">📅 <span id="detailSessions">—</span></span>
+                                <span class="meta-item">📍 <span id="detailLocation">Offline</span></span>
+                            </div>
+                            <div class="phase-desc-text" id="detailDescription">Select a phase above to see its description.</div>
+                            <div class="phase-offline">⚡ All phases are offline</div>
+                        </div>
+
+                        <div class="host-fields" id="hostFields">
+                            <div class="host-label">🏠 Host Group Details</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="groupSize">Number of Children (incl. host) <span class="required">*</span></label>
+                                    <input type="number" id="groupSize" placeholder="min 5, max 8" min="5" max="8" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="area">Area / Neighborhood <span class="required">*</span></label>
+                                    <input type="text" id="area" placeholder="e.g. Nasr City" />
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="talkToUs">Anything you'd like to tell us?</label>
-                            <textarea id="talkToUs" placeholder="Any special requests, questions, or comments…"></textarea>
+                            <textarea id="talkToUs" placeholder="Special requests, questions, or comments…"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
@@ -2201,7 +2801,6 @@
                 </div>
             </div>
 
-            <!-- Tagline - centered below -->
             <div class="enroll-tagline reveal">
                 💡 <span class="accent">Turning ideas into reality</span>, one circuit at a time.
             </div>
@@ -2234,11 +2833,74 @@
         (function() {
             'use strict';
 
-            // ─── GOOGLE SHEETS SCRIPT URL ──────────────────────────────
             const SCRIPT_URL =
-                'https://script.google.com/macros/s/AKfycbxTqTShIsn1_8VbWQcrNXOkaXT4ZZ-P1oEUD-aF2wr3FBQ7ZCeE4vTmywJacyzYzVKE/exec';
+                'https://script.google.com/macros/s/AKfycbxHHeGbIk5YunvJufNaqsLR_YEWNSyPa6Zr2N3Xt5LSW0an-7NWWD4iwpCYHW6-QWTs/exec';
 
-            // ─── PROJECT DATA ────────────────────────────────────────────
+            const phaseData = [{
+                id: 1,
+                name: 'Electronics Explorer',
+                price: 1990,
+                sessions: '4 sessions · 12 hours',
+                description: 'Learn the fundamentals of electricity, circuits, and how components work together. Build your first LED and button projects to understand the basics of electronics.',
+                icon: '⚛️'
+            }, {
+                id: 2,
+                name: 'Arduino Foundations',
+                price: 2190,
+                sessions: '4 sessions · 12 hours',
+                description: 'Dive into programming with Arduino. Learn how to write code, control outputs, and understand the logic behind every smart device.',
+                icon: '💻'
+            }, {
+                id: 3,
+                name: 'Embedded Devices Builder',
+                price: 2290,
+                sessions: '4 sessions · 12 hours',
+                description: 'Connect sensors and actuators to create real-world devices. Build water filling systems and learn how embedded systems make decisions.',
+                icon: '⚙️'
+            }, {
+                id: 4,
+                name: 'Smart Sensors Engineer',
+                price: 2390,
+                sessions: '4 sessions · 12 hours',
+                description: 'Master the art of sensing the world. Use ultrasonic, temperature, humidity, and other sensors to build intelligent systems.',
+                icon: '📡'
+            }, {
+                id: 5,
+                name: 'Motion & Automation Engineer',
+                price: 2490,
+                sessions: '4 sessions · 12 hours',
+                description: 'Bring motion to your projects with motors and servos. Build automated systems that respond to touch, motion, and light.',
+                icon: '🤖'
+            }, {
+                id: 6,
+                name: 'Smart Security Engineer',
+                price: 2590,
+                sessions: '4 sessions · 12 hours',
+                description: 'Create secure systems with RF remotes, password locks, and alarms. Learn how to protect and control access to devices.',
+                icon: '🔒'
+            }, {
+                id: 7,
+                name: 'Robotics & Audio Engineer',
+                price: 2690,
+                sessions: '4 sessions · 12 hours',
+                description: 'Build robots that follow lines, avoid obstacles, and even make music. Combine audio processing with robotics for interactive projects.',
+                icon: '🎵'
+            }, {
+                id: 8,
+                name: 'Embedded Systems Professional',
+                price: 2790,
+                sessions: '4 sessions · 12 hours',
+                description: 'Dive deep into professional techniques like interrupts, pointers, and power management. Learn how to optimize and scale your projects.',
+                icon: '🧠'
+            }, {
+                id: 9,
+                name: 'Innovation Capstone',
+                price: 2990,
+                sessions: '4 sessions · 12 hours',
+                description: 'Bring everything together in a final project. Design, build, and present a complete system that showcases all your skills.',
+                icon: '🚀'
+            }];
+
             const projectsData = [{
                 id: 1,
                 title: 'Button LED Board',
@@ -2457,11 +3119,9 @@
                 grad: 'grad-24'
             }];
 
-            // ─── SORT ────────────────────────────────────────────────────
             const order = { beginner: 0, intermediate: 1, advanced: 2 };
             projectsData.sort((a, b) => order[a.difficulty] - order[b.difficulty]);
 
-            // ─── RENDER PROJECTS ────────────────────────────────────────
             const grid = document.getElementById('projectsGrid');
 
             projectsData.forEach((project) => {
@@ -2523,7 +3183,6 @@
                 });
             });
 
-            // ─── HEADER SCROLL ──────────────────────────────────────────
             const header = document.getElementById('header');
 
             window.addEventListener('scroll', function() {
@@ -2534,7 +3193,6 @@
                 }
             });
 
-            // ─── COUNTERS ────────────────────────────────────────────────
             const counters = document.querySelectorAll('.counter');
             const counterObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2562,7 +3220,6 @@
 
             counters.forEach(c => counterObserver.observe(c));
 
-            // ─── SCROLL REVEAL ──────────────────────────────────────────
             const revealElements = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2575,7 +3232,6 @@
 
             revealElements.forEach(el => revealObserver.observe(el));
 
-            // ─── PARTICLES ──────────────────────────────────────────────
             const canvas = document.getElementById('particles-canvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
@@ -2651,7 +3307,6 @@
 
             animateParticles();
 
-            // ─── SMOOTH NAV ─────────────────────────────────────────────
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const target = document.querySelector(this.getAttribute('href'));
@@ -2665,7 +3320,6 @@
                 });
             });
 
-            // ─── LOGO FALLBACK ──────────────────────────────────────────
             const logoImgs = document.querySelectorAll('.logo-img, .logo-img-footer');
             logoImgs.forEach(img => {
                 img.addEventListener('error', function() {
@@ -2673,7 +3327,80 @@
                 });
             });
 
-            // ─── ENROLL FORM — JSONP to Google Sheets ──────────────────
+            let currentEnrollmentType = 'join';
+
+            window.setEnrollmentType = function(type) {
+                currentEnrollmentType = type;
+                document.getElementById('enrollmentType').value = type;
+
+                document.querySelectorAll('.toggle-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.type === type);
+                });
+
+                const hostFields = document.getElementById('hostFields');
+                if (type === 'host') {
+                    hostFields.classList.add('visible');
+                    document.getElementById('groupSize').required = true;
+                    document.getElementById('area').required = true;
+                } else {
+                    hostFields.classList.remove('visible');
+                    document.getElementById('groupSize').required = false;
+                    document.getElementById('area').required = false;
+                }
+            };
+
+            function updatePhoneDisplay() {
+                const phoneInput = document.getElementById('contactPhoneNumber');
+                const phoneVal = phoneInput.value.trim();
+                const displayEl = document.getElementById('displayPhoneNumber');
+                const confirmArea = document.getElementById('phoneConfirmArea');
+                const checkbox = document.getElementById('phoneConfirmCheckbox');
+
+                if (phoneVal.length >= 6) {
+                    displayEl.textContent = phoneVal;
+                    confirmArea.classList.add('visible');
+                    checkbox.checked = false;
+                } else {
+                    confirmArea.classList.remove('visible');
+                    checkbox.checked = false;
+                }
+            }
+
+            window.updatePhoneDisplay = updatePhoneDisplay;
+
+            function isPhoneConfirmed() {
+                const checkbox = document.getElementById('phoneConfirmCheckbox');
+                const phoneInput = document.getElementById('contactPhoneNumber');
+                const phoneVal = phoneInput.value.trim();
+
+                if (phoneVal.length >= 6) {
+                    return checkbox.checked;
+                }
+                return true;
+            }
+
+            window.updatePhaseDetails = function() {
+                const select = document.getElementById('phaseSelect');
+                const phaseId = parseInt(select.value, 10);
+                const box = document.getElementById('phaseDetailBox');
+                const nameEl = document.getElementById('detailPhaseName');
+                const priceEl = document.getElementById('detailPhasePrice');
+                const sessionsEl = document.getElementById('detailSessions');
+                const descEl = document.getElementById('detailDescription');
+
+                if (!phaseId || !phaseData[phaseId - 1]) {
+                    box.classList.remove('visible');
+                    return;
+                }
+
+                const phase = phaseData[phaseId - 1];
+                nameEl.textContent = phase.icon + ' ' + phase.name;
+                priceEl.innerHTML = phase.price.toLocaleString() + ' <span>EGP</span>';
+                sessionsEl.textContent = phase.sessions;
+                descEl.textContent = phase.description;
+                box.classList.add('visible');
+            };
+
             const form = document.getElementById('enrollForm');
             const submitBtn = document.getElementById('submitBtn');
             const messageEl = document.getElementById('formMessage');
@@ -2726,15 +3453,41 @@
                 e.preventDefault();
                 hideMessage();
 
+                const phoneInput = document.getElementById('contactPhoneNumber');
+                const phoneVal = phoneInput.value.trim();
+
+                if (phoneVal.length >= 6 && !document.getElementById('phoneConfirmCheckbox').checked) {
+                    showMessage('error', '⚠️ Please confirm your phone number by checking the box.');
+                    return false;
+                }
+
+                const enrollmentType = document.getElementById('enrollmentType').value;
                 const studentName = document.getElementById('studentName').value.trim();
                 const studentAge = document.getElementById('studentAge').value.trim();
                 const studentGrade = document.getElementById('studentGrade').value.trim();
-                const contactPhoneNumber = document.getElementById('contactPhoneNumber').value.trim();
+                const contactPhone = phoneVal;
+                const schoolName = document.getElementById('schoolName').value.trim();
+                const schoolRegion = document.getElementById('schoolRegion').value.trim();
+                const governorate = document.getElementById('governorate').value;
+                const phaseSelect = document.getElementById('phaseSelect').value;
                 const talkToUs = document.getElementById('talkToUs').value.trim();
 
-                if (!studentName || !studentAge || !studentGrade || !contactPhoneNumber) {
+                if (!studentName || !studentAge || !studentGrade || !contactPhone ||
+                    !schoolName || !schoolRegion || !governorate || !phaseSelect) {
                     showMessage('error', 'Please fill in all required fields.');
                     return false;
+                }
+
+                let hostData = {};
+                if (enrollmentType === 'host') {
+                    const groupSize = document.getElementById('groupSize').value.trim();
+                    const area = document.getElementById('area').value.trim();
+
+                    if (!groupSize || !area) {
+                        showMessage('error', 'Please complete all host group fields.');
+                        return false;
+                    }
+                    hostData = { groupSize, area };
                 }
 
                 submitBtn.disabled = true;
@@ -2744,19 +3497,29 @@
                 try {
                     const params = new URLSearchParams({
                         action: 'add',
-                        studentName: studentName,
-                        studentAge: studentAge,
-                        studentGrade: studentGrade,
-                        contactPhoneNumber: contactPhoneNumber,
-                        talkToUs: talkToUs || ''
+                        enrollmentType,
+                        studentName,
+                        studentAge,
+                        studentGrade,
+                        contactPhoneNumber: contactPhone,
+                        schoolName,
+                        schoolRegion,
+                        governorate,
+                        phase: phaseSelect,
+                        talkToUs: talkToUs || '',
+                        ...hostData
                     });
 
                     const url = SCRIPT_URL + '?' + params.toString();
                     const result = await jsonpRequest(url);
 
                     if (result.status === 'success') {
-                        showMessage('success', ' Submitted Successfully! We\'ll contact you soon.');
+                        showMessage('success', 'Submitted successfully! We\'ll contact you within 24 hours.');
                         form.reset();
+                        setEnrollmentType('join');
+                        document.getElementById('phaseDetailBox').classList.remove('visible');
+                        document.getElementById('phoneConfirmArea').classList.remove('visible');
+                        document.getElementById('displayPhoneNumber').textContent = '—';
                     } else {
                         showMessage('error', '❌ ' + (result.message || 'Something went wrong. Please try again.'));
                     }
@@ -2772,6 +3535,12 @@
             }
 
             window.handleSubmit = handleSubmit;
+
+            setEnrollmentType('join');
+            document.getElementById('phaseSelect').addEventListener('change', updatePhaseDetails);
+            updatePhoneDisplay();
+
+            console.log('✅ APlusCodersAcademy enrollment page ready (compact phone confirm).');
 
         })();
     </script>
