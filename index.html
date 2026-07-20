@@ -6,6 +6,7 @@
     <title>APlusCodersAcademy | Amr Elgendy – Arduino Mastery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
         /* ══════════════════════════════════════════════════════════════════
            RESET & BASE
@@ -1330,47 +1331,6 @@
             margin-bottom: 20px;
         }
 
-        /* ─── TOGGLE BUTTONS ─── */
-        .toggle-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 24px;
-            background: var(--bg-light);
-            border-radius: var(--radius-sm);
-            padding: 6px;
-            border: 1px solid var(--border);
-        }
-
-        .toggle-btn {
-            flex: 1;
-            padding: 10px 12px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            background: transparent;
-            color: var(--text-muted);
-            text-align: center;
-            font-family: inherit;
-        }
-
-        .toggle-btn:hover {
-            color: var(--text-dark);
-        }
-
-        .toggle-btn.active {
-            background: var(--bg-card);
-            color: var(--text-dark);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border: 1px solid var(--border);
-        }
-
-        .toggle-btn .icon {
-            margin-right: 6px;
-        }
-
         /* ─── FORM FIELDS ─── */
         .form-group {
             margin-bottom: 18px;
@@ -1805,6 +1765,106 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
+           LANGUAGE TOGGLE
+           ══════════════════════════════════════════════════════════════════ */
+        .lang-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 60px;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.02em;
+        }
+
+        .lang-toggle-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        /* ══════════════════════════════════════════════════════════════════
+           RTL (ARABIC) ADJUSTMENTS
+           ══════════════════════════════════════════════════════════════════ */
+        html[lang="ar"] body,
+        html[lang="ar"] input,
+        html[lang="ar"] textarea,
+        html[lang="ar"] select,
+        html[lang="ar"] button {
+            font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html[dir="rtl"] .logo .slogan {
+            border-left: none;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 0;
+            padding-right: 10px;
+            margin-left: 0;
+            margin-right: 4px;
+        }
+
+        html[dir="rtl"] .nav-links a::after {
+            left: auto;
+            right: 0;
+        }
+
+        html[dir="rtl"] .journey-timeline::before {
+            left: auto;
+            right: 24px;
+        }
+
+        html[dir="rtl"] .journey-step {
+            transform: translateX(20px);
+        }
+
+        html[dir="rtl"] .journey-step.visible {
+            transform: translateX(0);
+        }
+
+        html[dir="rtl"] .curriculum-card::before {
+            left: auto;
+            right: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        html[dir="rtl"] .form-group label .required {
+            margin-left: 0;
+            margin-right: 2px;
+        }
+
+        html[dir="rtl"] .phone-confirm-area {
+            border-left: none;
+            border-right: 3px solid var(--confirm-phone-accent);
+        }
+
+        html[dir="rtl"] .hero-badge {
+            padding: 6px 12px 6px 20px;
+        }
+
+        html[dir="rtl"] .enroll-left .option-card .opt-title .icon {
+            margin-right: 0;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 768px) {
+            html[dir="rtl"] .journey-timeline::before {
+                right: 18px;
+            }
+        }
+        @media (max-width: 480px) {
+            html[dir="rtl"] .journey-timeline::before {
+                right: 14px;
+            }
+        }
+
+        /* ══════════════════════════════════════════════════════════════════
            RESPONSIVE
            ══════════════════════════════════════════════════════════════════ */
         @media (max-width: 1024px) {
@@ -1854,6 +1914,9 @@
             }
             .enroll-left {
                 text-align: left;
+            }
+            html[dir="rtl"] .enroll-left {
+                text-align: right;
             }
             .enroll-left .desc {
                 max-width: 100%;
@@ -2257,14 +2320,15 @@
                 <span class="brand-text">
                     <span class="accent">APlus</span>Coders<span class="accent">Academy</span>
                     <span class="name-tag">| Amr Elgendy</span>
-                    <span class="slogan">Learn · Think · Create</span>
+                    <span class="slogan" data-i18n="slogan">Learn · Think · Create</span>
                 </span>
             </div>
             <ul class="nav-links">
-                <li><a href="#journey">Journey</a></li>
-                <li><a href="#curriculum">Curriculum</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#enroll" class="nav-cta">Enroll Now</a></li>
+                <li><a href="#journey" data-i18n="navJourney">Journey</a></li>
+                <li><a href="#curriculum" data-i18n="navCurriculum">Curriculum</a></li>
+                <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+                <li><a href="#enroll" class="nav-cta" data-i18n="navEnroll">Enroll Now</a></li>
+                <li><button type="button" id="langToggleBtn" class="lang-toggle-btn">AR / عربي</button></li>
             </ul>
         </div>
     </header>
@@ -2286,29 +2350,29 @@
             <div>
                 <div class="hero-badge">
                     <span class="pulse-dot"></span>
-                    Now Enrolling — Limited Spots
+                    <span data-i18n="heroBadge">Now Enrolling — Limited Spots</span>
                 </div>
-                <h1>From <span class="highlight">zero</span> to building <span class="highlight">real electronics</span></h1>
-                <p>
+                <h1 data-i18n-html="heroTitle">From <span class="highlight">zero</span> to building <span class="highlight">real electronics</span></h1>
+                <p data-i18n="heroDesc">
                     A complete hands‑on Arduino journey. Your child will build 20+ projects,
                     master coding, and understand electronics from the atom to the smart home.
                 </p>
                 <div class="hero-actions">
-                    <a href="#curriculum" class="btn btn-primary">📘 View Curriculum</a>
-                    <a href="#projects" class="btn btn-outline">✨ See Projects</a>
+                    <a href="#curriculum" class="btn btn-primary" data-i18n="btnCurriculum">📘 View Curriculum</a>
+                    <a href="#projects" class="btn btn-outline" data-i18n="btnProjects">✨ See Projects</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
                         <span class="number"><span class="counter" data-target="35">0</span>+</span>
-                        <span class="label">Sessions</span>
+                        <span class="label" data-i18n="statSessions">Sessions</span>
                     </div>
                     <div class="stat">
                         <span class="number"><span class="counter" data-target="20">0</span>+</span>
-                        <span class="label">Hands‑on Projects</span>
+                        <span class="label" data-i18n="statProjects">Hands‑on Projects</span>
                     </div>
                     <div class="stat">
                         <span class="number"><span class="counter" data-target="100">0</span>+</span>
-                        <span class="label">Topics Covered</span>
+                        <span class="label" data-i18n="statTopics">Topics Covered</span>
                     </div>
                 </div>
             </div>
@@ -2333,7 +2397,7 @@
                     </div>
                     <div class="showcase-content">
                         <span class="big-icon">🤖</span>
-                        <div class="brand-name">Arduino Mastery</div>
+                        <div class="brand-name" data-i18n="showcaseBrand">Arduino Mastery</div>
                         <div class="device-icons">
                             <span>⚡</span>
                             <span>🔌</span>
@@ -2342,7 +2406,7 @@
                             <span>📡</span>
                             <span>⚙️</span>
                         </div>
-                        <div class="sub-text">Circuit Board · Sensors · Motors · Projects</div>
+                        <div class="sub-text" data-i18n="showcaseSub">Circuit Board · Sensors · Motors · Projects</div>
                     </div>
                 </div>
             </div>
@@ -2354,19 +2418,19 @@
         <div class="container">
             <div class="stat-item">
                 <div class="number"><span class="counter" data-target="35">0</span>+</div>
-                <div class="label">Structured Sessions</div>
+                <div class="label" data-i18n="statsBarSessions">Structured Sessions</div>
             </div>
             <div class="stat-item">
                 <div class="number"><span class="counter" data-target="100">0</span>+</div>
-                <div class="label">Topics &amp; Concepts</div>
+                <div class="label" data-i18n="statsBarTopics">Topics &amp; Concepts</div>
             </div>
             <div class="stat-item">
                 <div class="number"><span class="counter" data-target="20">0</span>+</div>
-                <div class="label">Complete Projects</div>
+                <div class="label" data-i18n="statsBarProjects">Complete Projects</div>
             </div>
             <div class="stat-item">
                 <div class="number"><span class="counter" data-target="12">0</span>+</div>
-                <div class="label">Sensor Types</div>
+                <div class="label" data-i18n="statsBarSensors">Sensor Types</div>
             </div>
         </div>
     </section>
@@ -2375,94 +2439,11 @@
     <section class="journey" id="journey">
         <div class="container">
             <div class="text-center reveal">
-                <span class="section-tag">🚀 Your Path</span>
-                <h2 class="section-title">The <span class="highlight">Learning Journey</span></h2>
-                <p class="section-sub">A structured progression from absolute beginner to confident maker across 9 phases.</p>
+                <span class="section-tag" data-i18n="journeyTag">🚀 Your Path</span>
+                <h2 class="section-title" data-i18n-html="journeyTitle">The <span class="highlight">Learning Journey</span></h2>
+                <p class="section-sub" data-i18n="journeySub">A structured progression from absolute beginner to confident maker across 9 phases.</p>
             </div>
-            <div class="journey-timeline">
-
-                <div class="journey-step reveal" data-phase="1">
-                    <div class="step-icon">⚛️</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 1</span>
-                        <h4>Electronics Explorer</h4>
-                        <div class="phase-desc">Learn the fundamentals of electricity, circuits, and how components work together. Build your first LED and button projects to understand the basics of electronics.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="2">
-                    <div class="step-icon">💻</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 2</span>
-                        <h4>Arduino Foundations</h4>
-                        <div class="phase-desc">Dive into programming with Arduino. Learn how to write code, control outputs, and understand the logic behind every smart device.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="3">
-                    <div class="step-icon">⚙️</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 3</span>
-                        <h4>Embedded Devices Builder</h4>
-                        <div class="phase-desc">Connect sensors and actuators to create real-world devices. Build water filling systems and learn how embedded systems make decisions.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="4">
-                    <div class="step-icon">📡</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 4</span>
-                        <h4>Smart Sensors Engineer</h4>
-                        <div class="phase-desc">Master the art of sensing the world. Use ultrasonic, temperature, humidity, and other sensors to build intelligent systems.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="5">
-                    <div class="step-icon">🤖</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 5</span>
-                        <h4>Motion &amp; Automation Engineer</h4>
-                        <div class="phase-desc">Bring motion to your projects with motors and servos. Build automated systems that respond to touch, motion, and light.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="6">
-                    <div class="step-icon">🔒</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 6</span>
-                        <h4>Smart Security Engineer</h4>
-                        <div class="phase-desc">Create secure systems with RF remotes, password locks, and alarms. Learn how to protect and control access to devices.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="7">
-                    <div class="step-icon">🎵</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 7</span>
-                        <h4>Robotics &amp; Audio Engineer</h4>
-                        <div class="phase-desc">Build robots that follow lines, avoid obstacles, and even make music. Combine audio processing with robotics for interactive projects.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="8">
-                    <div class="step-icon">🧠</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 8</span>
-                        <h4>Embedded Systems Professional</h4>
-                        <div class="phase-desc">Dive deep into professional techniques like interrupts, pointers, and power management. Learn how to optimize and scale your projects.</div>
-                    </div>
-                </div>
-
-                <div class="journey-step reveal" data-phase="9">
-                    <div class="step-icon">🚀</div>
-                    <div class="step-content">
-                        <span class="step-number">Phase 9</span>
-                        <h4>Innovation Capstone</h4>
-                        <div class="phase-desc">Bring everything together in a final project. Design, build, and present a complete system that showcases all your skills.</div>
-                    </div>
-                </div>
-
-            </div>
+            <div class="journey-timeline" id="journeyTimeline"></div>
         </div>
     </section>
 
@@ -2470,133 +2451,11 @@
     <section class="curriculum" id="curriculum">
         <div class="container">
             <div class="text-center reveal">
-                <span class="section-tag">📖 Curriculum</span>
-                <h2 class="section-title">Every topic you'll <span class="highlight">master</span></h2>
-                <p class="section-sub">Over 100 topics organised into 6 logical categories — pure learning.</p>
+                <span class="section-tag" data-i18n="curriculumTag">📖 Curriculum</span>
+                <h2 class="section-title" data-i18n-html="curriculumTitle">Every topic you'll <span class="highlight">master</span></h2>
+                <p class="section-sub" data-i18n="curriculumSub">Over 100 topics organised into 6 logical categories — pure learning.</p>
             </div>
-            <div class="curriculum-grid">
-                <div class="curriculum-card reveal">
-                    <div class="card-header">
-                        <span class="icon">⚛️</span>
-                        <h4>Fundamentals of Electronics</h4>
-                    </div>
-                    <div class="topic-tags">
-                        <span class="tag">Atom structure</span>
-                        <span class="tag">What is Electricity?</span>
-                        <span class="tag">Voltage / Current / Resistance</span>
-                        <span class="tag">Ohm's Law</span>
-                        <span class="tag">Bread Board</span>
-                        <span class="tag">Safety in Electronics</span>
-                        <span class="tag">Analog vs Digital</span>
-                        <span class="tag">Binary (0s &amp; 1s)</span>
-                        <span class="tag">Binary ↔ Decimal Conversion</span>
-                        <span class="tag">Frequency &amp; Clock Speed</span>
-                        <span class="tag">How we talk to the MCU</span>
-                        <span class="tag">Memory — types &amp; function</span>
-                    </div>
-                </div>
-
-                <div class="curriculum-card reveal">
-                    <div class="card-header">
-                        <span class="icon">💻</span>
-                        <h4>Programming &amp; Logic</h4>
-                    </div>
-                    <div class="topic-tags">
-                        <span class="tag">What is Programming?</span>
-                        <span class="tag">Variables &amp; Data Types</span>
-                        <span class="tag">Operators (&lt;, &gt;, ==, etc.)</span>
-                        <span class="tag">Conditional Statements (If‑Else)</span>
-                        <span class="tag">Delay</span>
-                        <span class="tag">Loops — For / While</span>
-                        <span class="tag">Control Structures (Do, Switch)</span>
-                        <span class="tag">Functions (arguments, pass by value)</span>
-                        <span class="tag">Arrays &amp; Data Storage</span>
-                        <span class="tag">Understanding &amp; Making Libraries</span>
-                        <span class="tag">Code Organization</span>
-                        <span class="tag">Macros</span>
-                        <span class="tag">Pointers</span>
-                        <span class="tag">Interrupts</span>
-                    </div>
-                </div>
-
-                <div class="curriculum-card reveal">
-                    <div class="card-header">
-                        <span class="icon">📡</span>
-                        <h4>Sensors — Input</h4>
-                    </div>
-                    <div class="topic-tags">
-                        <span class="tag">Ultrasonic (SR04)</span>
-                        <span class="tag">Water Sensor</span>
-                        <span class="tag">Soil Moisture Sensor</span>
-                        <span class="tag">Temperature &amp; Humidity (DHT)</span>
-                        <span class="tag">PIR Motion Sensor</span>
-                        <span class="tag">Light Sensor (LDR)</span>
-                        <span class="tag">Reed Switch (Magnetic)</span>
-                        <span class="tag">Touch Sensor</span>
-                        <span class="tag">Heart Rate Sensor</span>
-                        <span class="tag">Force Sensor (FSR)</span>
-                        <span class="tag">Weight Sensor (Load Cell)</span>
-                        <span class="tag">Smoke Sensor (MQ‑2)</span>
-                        <span class="tag">Current Sensor</span>
-                        <span class="tag">Line‑Tracking Sensor</span>
-                        <span class="tag">Digital Camera Sensor</span>
-                        <span class="tag">Microphone</span>
-                    </div>
-                </div>
-
-                <div class="curriculum-card reveal">
-                    <div class="card-header">
-                        <span class="icon">⚙️</span>
-                        <h4>Actuators &amp; Motors</h4>
-                    </div>
-                    <div class="topic-tags">
-                        <span class="tag">LED / Button / Buzzer</span>
-                        <span class="tag">7‑Segment Display</span>
-                        <span class="tag">LCD Display</span>
-                        <span class="tag">OLED Graphic Display</span>
-                        <span class="tag">Ordinary DC Motor</span>
-                        <span class="tag">Servo Motor</span>
-                        <span class="tag">Stepper Motor</span>
-                        <span class="tag">Motor Driver (L298N / L293D)</span>
-                        <span class="tag">Solenoid &amp; Servo Locks</span>
-                        <span class="tag">5V Water Pump / Water Valve</span>
-                    </div>
-                </div>
-
-                <div class="curriculum-card reveal">
-                    <div class="card-header">
-                        <span class="icon">📶</span>
-                        <h4>Communication Protocols</h4>
-                    </div>
-                    <div class="topic-tags">
-                        <span class="tag">Intro to Communication Protocols</span>
-                        <span class="tag">UART (Basic &amp; Advanced)</span>
-                        <span class="tag">Bluetooth Protocol</span>
-                        <span class="tag">I²C (Inter‑Integrated Circuit)</span>
-                        <span class="tag">SPI (Serial Peripheral Interface)</span>
-                        <span class="tag">RF Transceiver (nRF24L01)</span>
-                        <span class="tag">SD Card Module</span>
-                        <span class="tag">Text‑to‑Audio Processing</span>
-                    </div>
-                </div>
-
-                <div class="curriculum-card reveal">
-                    <div class="card-header">
-                        <span class="icon">🧠</span>
-                        <h4>Advanced Concepts</h4>
-                    </div>
-                    <div class="topic-tags">
-                        <span class="tag">ADC (Analog to Digital Converter)</span>
-                        <span class="tag">PWM (Pulse Width Modulation)</span>
-                        <span class="tag">EEPROM — Read &amp; Write</span>
-                        <span class="tag">Watchdog Timer</span>
-                        <span class="tag">Sleep Modes</span>
-                        <span class="tag">Waking Up Techniques</span>
-                        <span class="tag">Real‑Time Clock (RTC)</span>
-                        <span class="tag">Proteus Circuit Design</span>
-                    </div>
-                </div>
-            </div>
+            <div class="curriculum-grid" id="curriculumGrid"></div>
         </div>
     </section>
 
@@ -2604,9 +2463,9 @@
     <section class="projects" id="projects">
         <div class="container">
             <div class="text-center reveal">
-                <span class="section-tag">✨ Projects</span>
-                <h2 class="section-title">What they'll <span class="highlight">build</span></h2>
-                <p class="section-sub">Every project is a milestone. From the first LED to a complete smart home.</p>
+                <span class="section-tag" data-i18n="projectsTag">✨ Projects</span>
+                <h2 class="section-title" data-i18n-html="projectsTitle">What they'll <span class="highlight">build</span></h2>
+                <p class="section-sub" data-i18n="projectsSub">Every project is a milestone. From the first LED to a complete smart home.</p>
             </div>
             <div class="projects-grid" id="projectsGrid">
             </div>
@@ -2618,9 +2477,9 @@
         <div class="container">
             <div class="enroll-wrapper">
                 <div class="enroll-left reveal">
-                    <div class="badge">🚀 Ready to start?</div>
-                    <h2>Start the <span class="highlight">journey</span> today</h2>
-                    <p class="desc">
+                    <div class="badge" data-i18n="enrollBadge">🚀 Ready to start?</div>
+                    <h2 data-i18n-html="enrollTitle">Start the <span class="highlight">journey</span> today</h2>
+                    <p class="desc" data-i18n-html="enrollDesc">
                         <strong>35 sessions</strong> across 9 phases. <strong>100+ topics</strong>.
                         <strong>20+ projects</strong>. From the atom to the smart home — your child will
                         build, code, and create like an engineer.
@@ -2628,33 +2487,33 @@
 
                     <div class="option-cards">
                         <div class="option-card">
-                            <div class="opt-title"><span class="icon">👥</span> Join Group</div>
-                            <div class="opt-desc">
+                            <div class="opt-title"><span class="icon">👥</span> <span data-i18n="optJoinTitle">Join Group</span></div>
+                            <div class="opt-desc" data-i18n="optJoinDesc">
                                 Your child joins an existing group (5-8 Students) at our classroom location and learns alongside other students in a collaborative environment.
                             </div>
-                            <span class="opt-tag">📍 At our classroom</span>
+                            <span class="opt-tag" data-i18n="optJoinTag">📍 At our classroom</span>
                         </div>
                         <div class="option-card">
-                            <div class="opt-title"><span class="icon">🏠</span> Host Private Group</div>
-                            <div class="opt-desc">
+                            <div class="opt-title"><span class="icon">🏠</span> <span data-i18n="optHostTitle">Host Private Group</span></div>
+                            <div class="opt-desc" data-i18n="optHostDesc">
                                 Gather 5–8 students and host private sessions at your own location.
                                 Enjoy special discount offers.
                             </div>
-                            <span class="opt-tag host">🏷️ Enjoy special Discount offers</span>
+                            <span class="opt-tag host" data-i18n="optHostTag">🏷️ Enjoy special Discount offers</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="enroll-card reveal">
-                    <div class="form-title">📋 Secure your spot</div>
-                    <div class="form-sub">Choose how you'd like to join, then fill in the details.</div>
+                    <div class="form-title" data-i18n="formTitle">📋 Secure your spot</div>
+                    <div class="form-sub" data-i18n="formSub">Choose how you'd like to join, then fill in the details.</div>
 
                     <div class="toggle-group" id="toggleGroup">
-                        <button class="toggle-btn active" data-type="join" onclick="setEnrollmentType('join')">
-                            <span class="icon">👥</span> Join Group
+                        <button class="toggle-btn active" data-type="join" onclick="setEnrollmentType('join')" type="button">
+                            <span class="icon">👥</span> <span data-i18n="optJoinTitle">Join Group</span>
                         </button>
-                        <button class="toggle-btn" data-type="host" onclick="setEnrollmentType('host')">
-                            <span class="icon">🏠</span> Host Private Group
+                        <button class="toggle-btn" data-type="host" onclick="setEnrollmentType('host')" type="button">
+                            <span class="icon">🏠</span> <span data-i18n="optHostTitle">Host Private Group</span>
                         </button>
                     </div>
 
@@ -2663,23 +2522,23 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="studentName">Student Name <span class="required">*</span></label>
-                                <input type="text" id="studentName" placeholder="e.g. Ahmed Mohamed" required />
+                                <label for="studentName"><span data-i18n="lblStudentName">Student Name</span> <span class="required">*</span></label>
+                                <input type="text" id="studentName" data-i18n-placeholder="phStudentName" placeholder="e.g. Ahmed Mohamed" required />
                             </div>
                             <div class="form-group">
-                                <label for="studentAge">Age <span class="required">*</span></label>
-                                <input type="number" id="studentAge" placeholder="e.g. 12" min="10" max="60" required />
+                                <label for="studentAge"><span data-i18n="lblAge">Age</span> <span class="required">*</span></label>
+                                <input type="number" id="studentAge" data-i18n-placeholder="phAge" placeholder="e.g. 12" min="10" max="60" required />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="studentGrade">Grade / Class <span class="required">*</span></label>
-                                <input type="text" id="studentGrade" placeholder="e.g. Grade 7" required />
+                                <label for="studentGrade"><span data-i18n="lblGrade">Grade / Class</span> <span class="required">*</span></label>
+                                <input type="text" id="studentGrade" data-i18n-placeholder="phGrade" placeholder="e.g. Grade 7" required />
                             </div>
                             <div class="form-group">
-                                <label for="contactPhoneNumber">Parent Phone <span class="required">*</span></label>
-                                <input type="tel" id="contactPhoneNumber" placeholder="e.g. 01012345678" required oninput="updatePhoneDisplay()" />
+                                <label for="contactPhoneNumber"><span data-i18n="lblPhone">Parent Phone</span> <span class="required">*</span></label>
+                                <input type="tel" id="contactPhoneNumber" data-i18n-placeholder="phPhone" placeholder="e.g. 01012345678" required oninput="updatePhoneDisplay()" />
                             </div>
                         </div>
 
@@ -2691,69 +2550,60 @@
                             <label class="confirm-checkbox">
                                 <input type="checkbox" id="phoneConfirmCheckbox" />
                                 <span class="check-label">
-                                    <span class="check-icon">✓</span> Confirm number
+                                    <span class="check-icon">✓</span> <span data-i18n="confirmNumber">Confirm number</span>
                                 </span>
                             </label>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="schoolName">Student School Name <span class="required">*</span></label>
-                                <input type="text" id="schoolName" placeholder="e.g. Cairo International School" required />
+                                <label for="schoolName"><span data-i18n="lblSchool">Student School Name</span> <span class="required">*</span></label>
+                                <input type="text" id="schoolName" data-i18n-placeholder="phSchool" placeholder="e.g. Cairo International School" required />
                             </div>
                             <div class="form-group">
-                                <label for="schoolRegion">School Region <span class="required">*</span></label>
-                                <input type="text" id="schoolRegion" placeholder="e.g. Nasr City" required />
+                                <label for="schoolRegion"><span data-i18n="lblRegion">School Region</span> <span class="required">*</span></label>
+                                <input type="text" id="schoolRegion" data-i18n-placeholder="phRegion" placeholder="e.g. Nasr City" required />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="governorate">Governorate <span class="required">*</span></label>
+                            <label for="governorate"><span data-i18n="lblGovernorate">Governorate</span> <span class="required">*</span></label>
                             <select id="governorate" required>
-                                <option value="">— Select Governorate —</option>
-                                <option value="Alexandria">Alexandria</option>
-                                <option value="Aswan">Aswan</option>
-                                <option value="Asyut">Asyut</option>
-                                <option value="Beheira">Beheira</option>
-                                <option value="Beni Suef">Beni Suef</option>
-                                <option value="Cairo">Cairo</option>
-                                <option value="Dakahlia">Dakahlia</option>
-                                <option value="Damietta">Damietta</option>
-                                <option value="Faiyum">Faiyum</option>
-                                <option value="Gharbia">Gharbia</option>
-                                <option value="Giza">Giza</option>
-                                <option value="Ismailia">Ismailia</option>
-                                <option value="Kafr El Sheikh">Kafr El Sheikh</option>
-                                <option value="Luxor">Luxor</option>
-                                <option value="Matrouh">Matrouh</option>
-                                <option value="Minya">Minya</option>
-                                <option value="Monufia">Monufia</option>
-                                <option value="New Valley">New Valley</option>
-                                <option value="North Sinai">North Sinai</option>
-                                <option value="Port Said">Port Said</option>
-                                <option value="Qalyubia">Qalyubia</option>
-                                <option value="Qena">Qena</option>
-                                <option value="Red Sea">Red Sea</option>
-                                <option value="Sharqia">Sharqia</option>
-                                <option value="Sohag">Sohag</option>
-                                <option value="South Sinai">South Sinai</option>
-                                <option value="Suez">Suez</option>
+                                <option value="" data-i18n="govSelect">— Select Governorate —</option>
+                                <option value="Alexandria" data-i18n="gov_Alexandria">Alexandria</option>
+                                <option value="Aswan" data-i18n="gov_Aswan">Aswan</option>
+                                <option value="Asyut" data-i18n="gov_Asyut">Asyut</option>
+                                <option value="Beheira" data-i18n="gov_Beheira">Beheira</option>
+                                <option value="Beni Suef" data-i18n="gov_BeniSuef">Beni Suef</option>
+                                <option value="Cairo" data-i18n="gov_Cairo">Cairo</option>
+                                <option value="Dakahlia" data-i18n="gov_Dakahlia">Dakahlia</option>
+                                <option value="Damietta" data-i18n="gov_Damietta">Damietta</option>
+                                <option value="Faiyum" data-i18n="gov_Faiyum">Faiyum</option>
+                                <option value="Gharbia" data-i18n="gov_Gharbia">Gharbia</option>
+                                <option value="Giza" data-i18n="gov_Giza">Giza</option>
+                                <option value="Ismailia" data-i18n="gov_Ismailia">Ismailia</option>
+                                <option value="Kafr El Sheikh" data-i18n="gov_KafrElSheikh">Kafr El Sheikh</option>
+                                <option value="Luxor" data-i18n="gov_Luxor">Luxor</option>
+                                <option value="Matrouh" data-i18n="gov_Matrouh">Matrouh</option>
+                                <option value="Minya" data-i18n="gov_Minya">Minya</option>
+                                <option value="Monufia" data-i18n="gov_Monufia">Monufia</option>
+                                <option value="New Valley" data-i18n="gov_NewValley">New Valley</option>
+                                <option value="North Sinai" data-i18n="gov_NorthSinai">North Sinai</option>
+                                <option value="Port Said" data-i18n="gov_PortSaid">Port Said</option>
+                                <option value="Qalyubia" data-i18n="gov_Qalyubia">Qalyubia</option>
+                                <option value="Qena" data-i18n="gov_Qena">Qena</option>
+                                <option value="Red Sea" data-i18n="gov_RedSea">Red Sea</option>
+                                <option value="Sharqia" data-i18n="gov_Sharqia">Sharqia</option>
+                                <option value="Sohag" data-i18n="gov_Sohag">Sohag</option>
+                                <option value="South Sinai" data-i18n="gov_SouthSinai">South Sinai</option>
+                                <option value="Suez" data-i18n="gov_Suez">Suez</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="phaseSelect">Select Phase <span class="required">*</span></label>
+                            <label for="phaseSelect"><span data-i18n="lblPhase">Select Phase</span> <span class="required">*</span></label>
                             <select id="phaseSelect" name="phase" required onchange="updatePhaseDetails()">
-                                <option value="">— Choose a phase —</option>
-                                <option value="1">Phase 1 – Electronics Explorer</option>
-                                <option value="2">Phase 2 – Arduino Foundations</option>
-                                <option value="3">Phase 3 – Embedded Devices Builder</option>
-                                <option value="4">Phase 4 – Smart Sensors Engineer</option>
-                                <option value="5">Phase 5 – Motion & Automation Engineer</option>
-                                <option value="6">Phase 6 – Smart Security Engineer</option>
-                                <option value="7">Phase 7 – Robotics & Audio Engineer</option>
-                                <option value="8">Phase 8 – Embedded Systems Professional</option>
-                                <option value="9">Phase 9 – Innovation Capstone</option>
+                                <option value="" data-i18n="phaseSelectPlaceholder">— Choose a phase —</option>
                             </select>
                         </div>
 
@@ -2764,32 +2614,32 @@
                             </div>
                             <div class="phase-meta">
                                 <span class="meta-item">📅 <span id="detailSessions">—</span></span>
-                                <span class="meta-item">📍 <span id="detailLocation">Offline</span></span>
+                                <span class="meta-item">📍 <span id="detailLocation" data-i18n="offlineWord">Offline</span></span>
                             </div>
-                            <div class="phase-desc-text" id="detailDescription">Select a phase above to see its description.</div>
-                            <div class="phase-offline">⚡ All phases are offline</div>
+                            <div class="phase-desc-text" id="detailDescription" data-i18n="phaseSelectHint">Select a phase above to see its description.</div>
+                            <div class="phase-offline" data-i18n="phaseOfflineNote">⚡ All phases are offline</div>
                         </div>
 
                         <div class="host-fields" id="hostFields">
-                            <div class="host-label">🏠 Host Group Details</div>
+                            <div class="host-label" data-i18n="hostFieldsLabel">🏠 Host Group Details</div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="groupSize">Number of Children (incl. host) <span class="required">*</span></label>
-                                    <input type="number" id="groupSize" placeholder="min 5, max 8" min="5" max="8" />
+                                    <label for="groupSize"><span data-i18n="lblGroupSize">Number of Children (incl. host)</span> <span class="required">*</span></label>
+                                    <input type="number" id="groupSize" data-i18n-placeholder="phGroupSize" placeholder="min 5, max 8" min="5" max="8" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="area">Area / Neighborhood <span class="required">*</span></label>
-                                    <input type="text" id="area" placeholder="e.g. Nasr City" />
+                                    <label for="area"><span data-i18n="lblArea">Area / Neighborhood</span> <span class="required">*</span></label>
+                                    <input type="text" id="area" data-i18n-placeholder="phArea" placeholder="e.g. Nasr City" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="talkToUs">Anything you'd like to tell us?</label>
-                            <textarea id="talkToUs" placeholder="Special requests, questions, or comments…"></textarea>
+                            <label for="talkToUs" data-i18n="lblTalk">Anything you'd like to tell us?</label>
+                            <textarea id="talkToUs" data-i18n-placeholder="phTalk" placeholder="Special requests, questions, or comments…"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn" data-i18n="submitBtn">
                             📩 Enroll Now
                         </button>
 
@@ -2801,7 +2651,7 @@
                 </div>
             </div>
 
-            <div class="enroll-tagline reveal">
+            <div class="enroll-tagline reveal" data-i18n-html="enrollTagline">
                 💡 <span class="accent">Turning ideas into reality</span>, one circuit at a time.
             </div>
         </div>
@@ -2819,10 +2669,10 @@
                     <span class="dot">·</span>
                     <span class="year">© 2026</span>
                     <span class="dot">·</span>
-                    <span class="rights">All rights reserved.</span>
+                    <span class="rights" data-i18n="rightsReserved">All rights reserved.</span>
                 </span>
             </div>
-            <div class="footer-tagline">
+            <div class="footer-tagline" data-i18n="footerTagline">
                 Designed for young engineers who love to make things.
             </div>
         </div>
@@ -2836,352 +2686,851 @@
             const SCRIPT_URL =
                 'https://script.google.com/macros/s/AKfycbxHHeGbIk5YunvJufNaqsLR_YEWNSyPa6Zr2N3Xt5LSW0an-7NWWD4iwpCYHW6-QWTs/exec';
 
+            let currentLang = 'en';
+
             const phaseData = [{
                 id: 1,
-                name: 'Electronics Explorer',
+                icon: '⚛️',
                 price: 1990,
-                sessions: '4 sessions · 12 hours',
-                description: 'Learn the fundamentals of electricity, circuits, and how components work together. Build your first LED and button projects to understand the basics of electronics.',
-                icon: '⚛️'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Electronics Explorer', ar: 'مستكشف الإلكترونيات' },
+                description: {
+                    en: 'Learn the fundamentals of electricity, circuits, and how components work together. Build your first LED and button projects to understand the basics of electronics.',
+                    ar: 'تعلم أساسيات الكهرباء والدوائر وكيفية عمل المكونات معًا. ابنِ أول مشاريعك باستخدام LED والزر لفهم أساسيات الإلكترونيات.'
+                }
             }, {
                 id: 2,
-                name: 'Arduino Foundations',
+                icon: '💻',
                 price: 2190,
-                sessions: '4 sessions · 12 hours',
-                description: 'Dive into programming with Arduino. Learn how to write code, control outputs, and understand the logic behind every smart device.',
-                icon: '💻'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Arduino Foundations', ar: 'أساسيات الأردوينو' },
+                description: {
+                    en: 'Dive into programming with Arduino. Learn how to write code, control outputs, and understand the logic behind every smart device.',
+                    ar: 'انطلق في عالم البرمجة مع الأردوينو. تعلم كتابة الكود، والتحكم في المخرجات، وفهم المنطق وراء كل جهاز ذكي.'
+                }
             }, {
                 id: 3,
-                name: 'Embedded Devices Builder',
+                icon: '⚙️',
                 price: 2290,
-                sessions: '4 sessions · 12 hours',
-                description: 'Connect sensors and actuators to create real-world devices. Build water filling systems and learn how embedded systems make decisions.',
-                icon: '⚙️'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Embedded Devices Builder', ar: 'باني الأجهزة المدمجة' },
+                description: {
+                    en: 'Connect sensors and actuators to create real-world devices. Build water filling systems and learn how embedded systems make decisions.',
+                    ar: 'وصّل الحساسات والمشغلات لإنشاء أجهزة واقعية. ابنِ أنظمة تعبئة المياه وتعلم كيف تتخذ الأنظمة المدمجة قراراتها.'
+                }
             }, {
                 id: 4,
-                name: 'Smart Sensors Engineer',
+                icon: '📡',
                 price: 2390,
-                sessions: '4 sessions · 12 hours',
-                description: 'Master the art of sensing the world. Use ultrasonic, temperature, humidity, and other sensors to build intelligent systems.',
-                icon: '📡'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Smart Sensors Engineer', ar: 'مهندس الحساسات الذكية' },
+                description: {
+                    en: 'Master the art of sensing the world. Use ultrasonic, temperature, humidity, and other sensors to build intelligent systems.',
+                    ar: 'أتقن فن استشعار العالم من حولك. استخدم حساسات الموجات فوق الصوتية والحرارة والرطوبة وغيرها لبناء أنظمة ذكية.'
+                }
             }, {
                 id: 5,
-                name: 'Motion & Automation Engineer',
+                icon: '🤖',
                 price: 2490,
-                sessions: '4 sessions · 12 hours',
-                description: 'Bring motion to your projects with motors and servos. Build automated systems that respond to touch, motion, and light.',
-                icon: '🤖'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Motion & Automation Engineer', ar: 'مهندس الحركة والأتمتة' },
+                description: {
+                    en: 'Bring motion to your projects with motors and servos. Build automated systems that respond to touch, motion, and light.',
+                    ar: 'أضف الحركة إلى مشاريعك باستخدام المحركات والسيرفو. ابنِ أنظمة أوتوماتيكية تستجيب للمس والحركة والضوء.'
+                }
             }, {
                 id: 6,
-                name: 'Smart Security Engineer',
+                icon: '🔒',
                 price: 2590,
-                sessions: '4 sessions · 12 hours',
-                description: 'Create secure systems with RF remotes, password locks, and alarms. Learn how to protect and control access to devices.',
-                icon: '🔒'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Smart Security Engineer', ar: 'مهندس الأمن الذكي' },
+                description: {
+                    en: 'Create secure systems with RF remotes, password locks, and alarms. Learn how to protect and control access to devices.',
+                    ar: 'أنشئ أنظمة آمنة باستخدام أجهزة التحكم عن بعد وأقفال كلمات المرور والإنذارات. تعلم كيفية حماية الأجهزة والتحكم في الوصول إليها.'
+                }
             }, {
                 id: 7,
-                name: 'Robotics & Audio Engineer',
+                icon: '🎵',
                 price: 2690,
-                sessions: '4 sessions · 12 hours',
-                description: 'Build robots that follow lines, avoid obstacles, and even make music. Combine audio processing with robotics for interactive projects.',
-                icon: '🎵'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Robotics & Audio Engineer', ar: 'مهندس الروبوتات والصوت' },
+                description: {
+                    en: 'Build robots that follow lines, avoid obstacles, and even make music. Combine audio processing with robotics for interactive projects.',
+                    ar: 'ابنِ روبوتات تتبع الخطوط وتتجنب العوائق بل وتعزف الموسيقى. ادمج معالجة الصوت مع الروبوتات لمشاريع تفاعلية.'
+                }
             }, {
                 id: 8,
-                name: 'Embedded Systems Professional',
+                icon: '🧠',
                 price: 2790,
-                sessions: '4 sessions · 12 hours',
-                description: 'Dive deep into professional techniques like interrupts, pointers, and power management. Learn how to optimize and scale your projects.',
-                icon: '🧠'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Embedded Systems Professional', ar: 'محترف الأنظمة المدمجة' },
+                description: {
+                    en: 'Dive deep into professional techniques like interrupts, pointers, and power management. Learn how to optimize and scale your projects.',
+                    ar: 'تعمّق في تقنيات احترافية مثل المقاطعات والمؤشرات وإدارة الطاقة. تعلم كيفية تحسين مشاريعك وتوسيعها.'
+                }
             }, {
                 id: 9,
-                name: 'Innovation Capstone',
+                icon: '🚀',
                 price: 2990,
-                sessions: '4 sessions · 12 hours',
-                description: 'Bring everything together in a final project. Design, build, and present a complete system that showcases all your skills.',
-                icon: '🚀'
+                sessions: { en: '4 sessions · 12 hours', ar: '4 جلسات · 12 ساعة' },
+                name: { en: 'Innovation Capstone', ar: 'مشروع التخرج الابتكاري' },
+                description: {
+                    en: 'Bring everything together in a final project. Design, build, and present a complete system that showcases all your skills.',
+                    ar: 'اجمع كل ما تعلمته في مشروع نهائي. صمم وابنِ واعرض نظامًا متكاملاً يعرض جميع مهاراتك.'
+                }
+            }];
+
+            const curriculumData = [{
+                icon: '⚛️',
+                title: { en: 'Fundamentals of Electronics', ar: 'أساسيات الإلكترونيات' },
+                tags: [
+                    { en: 'Atom structure', ar: 'تركيب الذرة' },
+                    { en: 'What is Electricity?', ar: 'ما هي الكهرباء؟' },
+                    { en: 'Voltage / Current / Resistance', ar: 'الجهد / التيار / المقاومة' },
+                    { en: "Ohm's Law", ar: 'قانون أوم' },
+                    { en: 'Bread Board', ar: 'لوحة التجارب' },
+                    { en: 'Safety in Electronics', ar: 'السلامة في الإلكترونيات' },
+                    { en: 'Analog vs Digital', ar: 'تناظري مقابل رقمي' },
+                    { en: 'Binary (0s & 1s)', ar: 'النظام الثنائي (0 و1)' },
+                    { en: 'Binary ↔ Decimal Conversion', ar: 'التحويل بين الثنائي والعشري' },
+                    { en: 'Frequency & Clock Speed', ar: 'التردد وسرعة الساعة' },
+                    { en: 'How we talk to the MCU', ar: 'كيف نتواصل مع المتحكم الدقيق' },
+                    { en: 'Memory — types & function', ar: 'الذاكرة — الأنواع والوظائف' }
+                ]
+            }, {
+                icon: '💻',
+                title: { en: 'Programming & Logic', ar: 'البرمجة والمنطق' },
+                tags: [
+                    { en: 'What is Programming?', ar: 'ما هي البرمجة؟' },
+                    { en: 'Variables & Data Types', ar: 'المتغيرات وأنواع البيانات' },
+                    { en: 'Operators (<, >, ==, etc.)', ar: 'العمليات (<, >, ==...)' },
+                    { en: 'Conditional Statements (If-Else)', ar: 'الجمل الشرطية (If-Else)' },
+                    { en: 'Delay', ar: 'التأخير الزمني' },
+                    { en: 'Loops — For / While', ar: 'الحلقات — For / While' },
+                    { en: 'Control Structures (Do, Switch)', ar: 'هياكل التحكم (Do, Switch)' },
+                    { en: 'Functions (arguments, pass by value)', ar: 'الدوال (المعاملات، التمرير بالقيمة)' },
+                    { en: 'Arrays & Data Storage', ar: 'المصفوفات وتخزين البيانات' },
+                    { en: 'Understanding & Making Libraries', ar: 'فهم وإنشاء المكتبات' },
+                    { en: 'Code Organization', ar: 'تنظيم الكود' },
+                    { en: 'Macros', ar: 'الماكرو' },
+                    { en: 'Pointers', ar: 'المؤشرات' },
+                    { en: 'Interrupts', ar: 'المقاطعات' }
+                ]
+            }, {
+                icon: '📡',
+                title: { en: 'Sensors — Input', ar: 'الحساسات — المدخلات' },
+                tags: [
+                    { en: 'Ultrasonic (SR04)', ar: 'الموجات فوق الصوتية (SR04)' },
+                    { en: 'Water Sensor', ar: 'حساس الماء' },
+                    { en: 'Soil Moisture Sensor', ar: 'حساس رطوبة التربة' },
+                    { en: 'Temperature & Humidity (DHT)', ar: 'الحرارة والرطوبة (DHT)' },
+                    { en: 'PIR Motion Sensor', ar: 'حساس الحركة PIR' },
+                    { en: 'Light Sensor (LDR)', ar: 'حساس الضوء (LDR)' },
+                    { en: 'Reed Switch (Magnetic)', ar: 'مفتاح ريد (مغناطيسي)' },
+                    { en: 'Touch Sensor', ar: 'حساس اللمس' },
+                    { en: 'Heart Rate Sensor', ar: 'حساس معدل ضربات القلب' },
+                    { en: 'Force Sensor (FSR)', ar: 'حساس القوة (FSR)' },
+                    { en: 'Weight Sensor (Load Cell)', ar: 'حساس الوزن (خلية الحمل)' },
+                    { en: 'Smoke Sensor (MQ-2)', ar: 'حساس الدخان (MQ-2)' },
+                    { en: 'Current Sensor', ar: 'حساس التيار' },
+                    { en: 'Line-Tracking Sensor', ar: 'حساس تتبع الخط' },
+                    { en: 'Digital Camera Sensor', ar: 'حساس الكاميرا الرقمية' },
+                    { en: 'Microphone', ar: 'الميكروفون' }
+                ]
+            }, {
+                icon: '⚙️',
+                title: { en: 'Actuators & Motors', ar: 'المشغلات والمحركات' },
+                tags: [
+                    { en: 'LED / Button / Buzzer', ar: 'LED / زر / جرس' },
+                    { en: '7-Segment Display', ar: 'شاشة 7 قطع' },
+                    { en: 'LCD Display', ar: 'شاشة LCD' },
+                    { en: 'OLED Graphic Display', ar: 'شاشة OLED الرسومية' },
+                    { en: 'Ordinary DC Motor', ar: 'محرك تيار مستمر عادي' },
+                    { en: 'Servo Motor', ar: 'محرك سيرفو' },
+                    { en: 'Stepper Motor', ar: 'محرك خطوة' },
+                    { en: 'Motor Driver (L298N / L293D)', ar: 'مشغل المحرك (L298N / L293D)' },
+                    { en: 'Solenoid & Servo Locks', ar: 'أقفال السلينويد والسيرفو' },
+                    { en: '5V Water Pump / Water Valve', ar: 'مضخة/صمام مياه 5 فولت' }
+                ]
+            }, {
+                icon: '📶',
+                title: { en: 'Communication Protocols', ar: 'بروتوكولات الاتصال' },
+                tags: [
+                    { en: 'Intro to Communication Protocols', ar: 'مقدمة في بروتوكولات الاتصال' },
+                    { en: 'UART (Basic & Advanced)', ar: 'UART (أساسي ومتقدم)' },
+                    { en: 'Bluetooth Protocol', ar: 'بروتوكول البلوتوث' },
+                    { en: 'I²C (Inter-Integrated Circuit)', ar: 'I²C' },
+                    { en: 'SPI (Serial Peripheral Interface)', ar: 'SPI' },
+                    { en: 'RF Transceiver (nRF24L01)', ar: 'جهاز إرسال واستقبال RF (nRF24L01)' },
+                    { en: 'SD Card Module', ar: 'وحدة بطاقة SD' },
+                    { en: 'Text-to-Audio Processing', ar: 'تحويل النص إلى صوت' }
+                ]
+            }, {
+                icon: '🧠',
+                title: { en: 'Advanced Concepts', ar: 'مفاهيم متقدمة' },
+                tags: [
+                    { en: 'ADC (Analog to Digital Converter)', ar: 'محول تناظري إلى رقمي (ADC)' },
+                    { en: 'PWM (Pulse Width Modulation)', ar: 'تعديل عرض النبضة (PWM)' },
+                    { en: 'EEPROM — Read & Write', ar: 'EEPROM — القراءة والكتابة' },
+                    { en: 'Watchdog Timer', ar: 'مؤقت المراقبة' },
+                    { en: 'Sleep Modes', ar: 'أوضاع السكون' },
+                    { en: 'Waking Up Techniques', ar: 'تقنيات الاستيقاظ' },
+                    { en: 'Real-Time Clock (RTC)', ar: 'الساعة الفورية (RTC)' },
+                    { en: 'Proteus Circuit Design', ar: 'تصميم الدوائر ببرنامج Proteus' }
+                ]
             }];
 
             const projectsData = [{
                 id: 1,
-                title: 'Button LED Board',
                 emoji: '💡',
-                desc: 'Learn how to control an LED with a push button. Understand input/output concepts, digital signals, and basic circuit building on a breadboard.',
-                meta: '⚡ Digital I/O',
-                skill: 'Input · Output',
+                title: { en: 'Button LED Board', ar: 'لوحة LED بالزر' },
+                desc: {
+                    en: 'Learn how to control an LED with a push button. Understand input/output concepts, digital signals, and basic circuit building on a breadboard.',
+                    ar: 'تعلم كيفية التحكم في LED باستخدام زر ضغط. افهم مفاهيم الإدخال والإخراج، والإشارات الرقمية، وبناء الدوائر الأساسية على لوحة التجارب.'
+                },
+                meta: { en: '⚡ Digital I/O', ar: '⚡ إدخال/إخراج رقمي' },
+                skill: { en: 'Input · Output', ar: 'إدخال · إخراج' },
                 difficulty: 'beginner',
                 grad: 'grad-1'
             }, {
                 id: 2,
-                title: 'Electric Generator',
                 emoji: '🔋',
-                desc: 'Build a small hand-crank generator to understand how mechanical energy converts to electrical energy. Learn about electromagnetism and basic power generation.',
-                meta: '⚡ Energy Conversion',
-                skill: 'Physics · Mechanics',
+                title: { en: 'Electric Generator', ar: 'مولد كهربائي' },
+                desc: {
+                    en: 'Build a small hand-crank generator to understand how mechanical energy converts to electrical energy. Learn about electromagnetism and basic power generation.',
+                    ar: 'ابنِ مولدًا صغيرًا يعمل باليد لفهم كيفية تحويل الطاقة الميكانيكية إلى كهربائية. تعلم عن الكهرومغناطيسية وتوليد الطاقة الأساسي.'
+                },
+                meta: { en: '⚡ Energy Conversion', ar: '⚡ تحويل الطاقة' },
+                skill: { en: 'Physics · Mechanics', ar: 'فيزياء · ميكانيكا' },
                 difficulty: 'beginner',
                 grad: 'grad-2'
             }, {
                 id: 3,
-                title: 'Buzzer Board',
                 emoji: '🔊',
-                desc: 'Create sound with a piezo buzzer. Learn about frequency, tone generation, and how to build simple alarm and notification systems.',
-                meta: '🎵 Sound Generation',
-                skill: 'Tone · Frequency',
+                title: { en: 'Buzzer Board', ar: 'لوحة الجرس الصوتي' },
+                desc: {
+                    en: 'Create sound with a piezo buzzer. Learn about frequency, tone generation, and how to build simple alarm and notification systems.',
+                    ar: 'أنتج صوتًا باستخدام جرس بيزو. تعلم عن التردد وتوليد النغمات وكيفية بناء أنظمة إنذار وتنبيه بسيطة.'
+                },
+                meta: { en: '🎵 Sound Generation', ar: '🎵 توليد الصوت' },
+                skill: { en: 'Tone · Frequency', ar: 'نغمة · تردد' },
                 difficulty: 'beginner',
                 grad: 'grad-3'
             }, {
                 id: 4,
-                title: 'Smart Parking System',
                 emoji: '🅿️',
-                desc: 'Build an automated parking system using an ultrasonic sensor to detect vehicle presence and a servo motor to control the gate. Learn about distance measurement, servo control, and smart parking management.',
-                meta: '🅿️ Parking Automation',
-                skill: 'Ultrasonic · Servo',
+                title: { en: 'Smart Parking System', ar: 'نظام مواقف ذكي' },
+                desc: {
+                    en: 'Build an automated parking system using an ultrasonic sensor to detect vehicle presence and a servo motor to control the gate. Learn about distance measurement, servo control, and smart parking management.',
+                    ar: 'ابنِ نظام مواقف أوتوماتيكي باستخدام حساس الموجات فوق الصوتية للكشف عن وجود السيارة ومحرك سيرفو للتحكم في البوابة. تعلم عن قياس المسافة والتحكم بالسيرفو وإدارة المواقف الذكية.'
+                },
+                meta: { en: '🅿️ Parking Automation', ar: '🅿️ أتمتة المواقف' },
+                skill: { en: 'Ultrasonic · Servo', ar: 'موجات فوق صوتية · سيرفو' },
                 difficulty: 'intermediate',
                 grad: 'grad-4'
             }, {
                 id: 5,
-                title: '7‑Segment Counter',
                 emoji: '🔢',
-                desc: 'Display numbers on a 7-segment display. Understand how to control multi-segment displays and create digital counters with Arduino.',
-                meta: '📊 Display',
-                skill: 'Segments · Counting',
+                title: { en: '7‑Segment Counter', ar: 'عداد 7 قطع' },
+                desc: {
+                    en: 'Display numbers on a 7-segment display. Understand how to control multi-segment displays and create digital counters with Arduino.',
+                    ar: 'اعرض الأرقام على شاشة 7 قطع. افهم كيفية التحكم في الشاشات متعددة القطع وإنشاء عدادات رقمية بالأردوينو.'
+                },
+                meta: { en: '📊 Display', ar: '📊 عرض' },
+                skill: { en: 'Segments · Counting', ar: 'قطع · عد' },
                 difficulty: 'beginner',
                 grad: 'grad-6'
             }, {
                 id: 6,
-                title: 'Fan Speed Controller',
                 emoji: '💨',
-                desc: 'Control a motor\'s speed using a potentiometer. Learn about PWM (Pulse Width Modulation), analog input, and variable speed control.',
-                meta: '🌀 PWM Control',
-                skill: 'Potentiometer · Motor',
+                title: { en: 'Fan Speed Controller', ar: 'متحكم سرعة المروحة' },
+                desc: {
+                    en: "Control a motor's speed using a potentiometer. Learn about PWM (Pulse Width Modulation), analog input, and variable speed control.",
+                    ar: 'تحكم في سرعة المحرك باستخدام مقاومة متغيرة. تعلم عن تعديل عرض النبضة (PWM) والإدخال التناظري والتحكم بالسرعة المتغيرة.'
+                },
+                meta: { en: '🌀 PWM Control', ar: '🌀 تحكم PWM' },
+                skill: { en: 'Potentiometer · Motor', ar: 'مقاومة متغيرة · محرك' },
                 difficulty: 'beginner',
                 grad: 'grad-12'
             }, {
                 id: 7,
-                title: 'Water Filling & Level',
                 emoji: '💧',
-                desc: 'Build a system that detects water levels and automatically fills a tank. Learn about sensors, automation, and control logic.',
-                meta: '💦 Automation',
-                skill: 'Sensor · Control',
+                title: { en: 'Water Filling & Level', ar: 'تعبئة ومستوى المياه' },
+                desc: {
+                    en: 'Build a system that detects water levels and automatically fills a tank. Learn about sensors, automation, and control logic.',
+                    ar: 'ابنِ نظامًا يكتشف مستويات المياه ويملأ الخزان تلقائيًا. تعلم عن الحساسات والأتمتة ومنطق التحكم.'
+                },
+                meta: { en: '💦 Automation', ar: '💦 أتمتة' },
+                skill: { en: 'Sensor · Control', ar: 'حساس · تحكم' },
                 difficulty: 'intermediate',
                 grad: 'grad-5'
             }, {
                 id: 8,
-                title: 'Digital Clock',
                 emoji: '🕐',
-                desc: 'Create a fully functional digital clock using an RTC module. Learn about timekeeping, display integration, and real-time systems.',
-                meta: '⏰ Timekeeping',
-                skill: 'RTC · Display',
+                title: { en: 'Digital Clock', ar: 'ساعة رقمية' },
+                desc: {
+                    en: 'Create a fully functional digital clock using an RTC module. Learn about timekeeping, display integration, and real-time systems.',
+                    ar: 'أنشئ ساعة رقمية تعمل بالكامل باستخدام وحدة RTC. تعلم عن تتبع الوقت ودمج الشاشات والأنظمة الفورية.'
+                },
+                meta: { en: '⏰ Timekeeping', ar: '⏰ تتبع الوقت' },
+                skill: { en: 'RTC · Display', ar: 'RTC · شاشة' },
                 difficulty: 'intermediate',
                 grad: 'grad-7'
             }, {
                 id: 9,
-                title: 'Parking Sensor',
                 emoji: '🚗',
-                desc: 'Build a car parking assistant with ultrasonic sensor and buzzer. Learn about distance measurement, echo timing, and proximity alerts.',
-                meta: '📏 Distance',
-                skill: 'Ultrasonic · Proximity',
+                title: { en: 'Parking Sensor', ar: 'حساس ركن السيارة' },
+                desc: {
+                    en: 'Build a car parking assistant with ultrasonic sensor and buzzer. Learn about distance measurement, echo timing, and proximity alerts.',
+                    ar: 'ابنِ مساعد ركن للسيارة بحساس الموجات فوق الصوتية والجرس. تعلم عن قياس المسافة وتوقيت الصدى وتنبيهات القرب.'
+                },
+                meta: { en: '📏 Distance', ar: '📏 مسافة' },
+                skill: { en: 'Ultrasonic · Proximity', ar: 'موجات فوق صوتية · قرب' },
                 difficulty: 'intermediate',
                 grad: 'grad-8'
             }, {
                 id: 10,
-                title: 'Weather Station',
                 emoji: '🌤️',
-                desc: 'Combine temperature, humidity, and pressure sensors to create a weather monitoring system. Learn about data collection and environmental sensing.',
-                meta: '🌡️ Environment',
-                skill: 'Sensors · Data',
+                title: { en: 'Weather Station', ar: 'محطة أرصاد جوية' },
+                desc: {
+                    en: 'Combine temperature, humidity, and pressure sensors to create a weather monitoring system. Learn about data collection and environmental sensing.',
+                    ar: 'ادمج حساسات الحرارة والرطوبة والضغط لإنشاء نظام رصد للطقس. تعلم عن جمع البيانات والاستشعار البيئي.'
+                },
+                meta: { en: '🌡️ Environment', ar: '🌡️ بيئة' },
+                skill: { en: 'Sensors · Data', ar: 'حساسات · بيانات' },
                 difficulty: 'intermediate',
                 grad: 'grad-9'
             }, {
                 id: 11,
-                title: 'Touch‑Controlled Door',
                 emoji: '🚪',
-                desc: 'Create a touch-activated servo mechanism that opens a door model. Learn about touch sensors, servo control, and user interaction.',
-                meta: '🖐️ Interaction',
-                skill: 'Touch · Servo',
+                title: { en: 'Touch‑Controlled Door', ar: 'باب يعمل باللمس' },
+                desc: {
+                    en: 'Create a touch-activated servo mechanism that opens a door model. Learn about touch sensors, servo control, and user interaction.',
+                    ar: 'أنشئ آلية سيرفو تعمل باللمس لفتح نموذج باب. تعلم عن حساسات اللمس والتحكم بالسيرفو والتفاعل مع المستخدم.'
+                },
+                meta: { en: '🖐️ Interaction', ar: '🖐️ تفاعل' },
+                skill: { en: 'Touch · Servo', ar: 'لمس · سيرفو' },
                 difficulty: 'intermediate',
                 grad: 'grad-11'
             }, {
                 id: 12,
-                title: 'Smart Motion Bulb',
                 emoji: '💡',
-                desc: 'Build a motion-activated light that only turns on when it\'s dark. Learn about PIR sensors, light sensors, and energy-efficient automation.',
-                meta: '🌙 Smart Lighting',
-                skill: 'PIR · LDR',
+                title: { en: 'Smart Motion Bulb', ar: 'لمبة حركة ذكية' },
+                desc: {
+                    en: "Build a motion-activated light that only turns on when it's dark. Learn about PIR sensors, light sensors, and energy-efficient automation.",
+                    ar: 'ابنِ إضاءة تعمل بالحركة تضيء فقط عند الظلام. تعلم عن حساسات PIR وحساسات الضوء والأتمتة الموفرة للطاقة.'
+                },
+                meta: { en: '🌙 Smart Lighting', ar: '🌙 إضاءة ذكية' },
+                skill: { en: 'PIR · LDR', ar: 'PIR · LDR' },
                 difficulty: 'intermediate',
                 grad: 'grad-13'
             }, {
                 id: 13,
-                title: 'RF Door Alarm',
                 emoji: '🔔',
-                desc: 'Create a wireless door alarm system using RF transceivers. Learn about wireless communication, remote control, and security systems.',
-                meta: '📡 Wireless',
-                skill: 'RF · Remote',
+                title: { en: 'RF Door Alarm', ar: 'إنذار باب لاسلكي' },
+                desc: {
+                    en: 'Create a wireless door alarm system using RF transceivers. Learn about wireless communication, remote control, and security systems.',
+                    ar: 'أنشئ نظام إنذار باب لاسلكي باستخدام أجهزة إرسال واستقبال RF. تعلم عن الاتصال اللاسلكي والتحكم عن بعد وأنظمة الأمان.'
+                },
+                meta: { en: '📡 Wireless', ar: '📡 لاسلكي' },
+                skill: { en: 'RF · Remote', ar: 'RF · تحكم عن بعد' },
                 difficulty: 'intermediate',
                 grad: 'grad-14'
             }, {
                 id: 14,
-                title: 'Password Safe',
                 emoji: '🔒',
-                desc: 'Build a secure electronic lock system with a keypad and solenoid. Learn about input validation, security logic, and physical actuation.',
-                meta: '🔐 Security',
-                skill: 'Keypad · Solenoid',
+                title: { en: 'Password Safe', ar: 'خزنة بكلمة مرور' },
+                desc: {
+                    en: 'Build a secure electronic lock system with a keypad and solenoid. Learn about input validation, security logic, and physical actuation.',
+                    ar: 'ابنِ نظام قفل إلكتروني آمن بلوحة مفاتيح وسلينويد. تعلم عن التحقق من الإدخال ومنطق الأمان والتشغيل الفيزيائي.'
+                },
+                meta: { en: '🔐 Security', ar: '🔐 أمان' },
+                skill: { en: 'Keypad · Solenoid', ar: 'لوحة مفاتيح · سلينويد' },
                 difficulty: 'intermediate',
                 grad: 'grad-15'
             }, {
                 id: 15,
-                title: 'Strength Game',
                 emoji: '🏋️',
-                desc: 'Create a game that measures grip strength using a force sensor. Learn about pressure sensing, analog-to-digital conversion, and interactive game design.',
-                meta: '💪 Force Sensing',
-                skill: 'FSR · Analog',
+                title: { en: 'Strength Game', ar: 'لعبة القوة' },
+                desc: {
+                    en: 'Create a game that measures grip strength using a force sensor. Learn about pressure sensing, analog-to-digital conversion, and interactive game design.',
+                    ar: 'أنشئ لعبة تقيس قوة القبضة باستخدام حساس القوة. تعلم عن استشعار الضغط والتحويل التناظري إلى رقمي وتصميم الألعاب التفاعلية.'
+                },
+                meta: { en: '💪 Force Sensing', ar: '💪 استشعار القوة' },
+                skill: { en: 'FSR · Analog', ar: 'FSR · تناظري' },
                 difficulty: 'intermediate',
                 grad: 'grad-17'
             }, {
                 id: 16,
-                title: 'Fire Detection',
                 emoji: '🚒',
-                desc: 'Create a fire alarm system using smoke and flame sensors. Learn about gas sensing, flame detection, and emergency alert systems.',
-                meta: '🔥 Safety',
-                skill: 'Smoke · Flame',
+                title: { en: 'Fire Detection', ar: 'كشف الحريق' },
+                desc: {
+                    en: 'Create a fire alarm system using smoke and flame sensors. Learn about gas sensing, flame detection, and emergency alert systems.',
+                    ar: 'أنشئ نظام إنذار حريق باستخدام حساسات الدخان واللهب. تعلم عن استشعار الغازات وكشف اللهب وأنظمة التنبيه الطارئ.'
+                },
+                meta: { en: '🔥 Safety', ar: '🔥 سلامة' },
+                skill: { en: 'Smoke · Flame', ar: 'دخان · لهب' },
                 difficulty: 'intermediate',
                 grad: 'grad-19'
             }, {
                 id: 17,
-                title: 'Smart Irrigation',
                 emoji: '🌿',
-                desc: 'Build an automated plant watering system using soil moisture sensors and a water pump. Learn about feedback loops and resource management.',
-                meta: '🌱 Automation',
-                skill: 'Moisture · Pump',
+                title: { en: 'Smart Irrigation', ar: 'ري ذكي' },
+                desc: {
+                    en: 'Build an automated plant watering system using soil moisture sensors and a water pump. Learn about feedback loops and resource management.',
+                    ar: 'ابنِ نظام ري نباتات أوتوماتيكي باستخدام حساسات رطوبة التربة ومضخة مياه. تعلم عن حلقات التغذية الراجعة وإدارة الموارد.'
+                },
+                meta: { en: '🌱 Automation', ar: '🌱 أتمتة' },
+                skill: { en: 'Moisture · Pump', ar: 'رطوبة · مضخة' },
                 difficulty: 'advanced',
                 grad: 'grad-10'
             }, {
                 id: 18,
-                title: 'Heartbeat Monitor',
                 emoji: '❤️',
-                desc: 'Measure pulse rate using a heartbeat sensor and display on an OLED. Learn about biological signal processing and real-time data visualization.',
-                meta: '💓 Biosensing',
-                skill: 'Pulse · OLED',
+                title: { en: 'Heartbeat Monitor', ar: 'مراقب ضربات القلب' },
+                desc: {
+                    en: 'Measure pulse rate using a heartbeat sensor and display on an OLED. Learn about biological signal processing and real-time data visualization.',
+                    ar: 'قِس معدل النبض باستخدام حساس ضربات القلب واعرضه على شاشة OLED. تعلم عن معالجة الإشارات الحيوية وتصور البيانات الفوري.'
+                },
+                meta: { en: '💓 Biosensing', ar: '💓 استشعار حيوي' },
+                skill: { en: 'Pulse · OLED', ar: 'نبض · OLED' },
                 difficulty: 'advanced',
                 grad: 'grad-16'
             }, {
                 id: 19,
-                title: 'Weight Scale',
                 emoji: '⚖️',
-                desc: 'Build a digital weighing scale using a load cell and HX711 amplifier. Learn about precision measurement, calibration, and signal conditioning.',
-                meta: '📊 Measurement',
-                skill: 'Load Cell · Calibration',
+                title: { en: 'Weight Scale', ar: 'ميزان وزن' },
+                desc: {
+                    en: 'Build a digital weighing scale using a load cell and HX711 amplifier. Learn about precision measurement, calibration, and signal conditioning.',
+                    ar: 'ابنِ ميزانًا رقميًا باستخدام خلية حمل ومكبر HX711. تعلم عن القياس الدقيق والمعايرة ومعالجة الإشارة.'
+                },
+                meta: { en: '📊 Measurement', ar: '📊 قياس' },
+                skill: { en: 'Load Cell · Calibration', ar: 'خلية حمل · معايرة' },
                 difficulty: 'advanced',
                 grad: 'grad-18'
             }, {
                 id: 20,
-                title: 'Sound System',
                 emoji: '🔊',
-                desc: 'Build a small audio system that can play tones and simple melodies. Learn about audio processing, waveform generation, and speaker control.',
-                meta: '🎵 Audio',
-                skill: 'Tone · Speaker',
+                title: { en: 'Sound System', ar: 'نظام صوتي' },
+                desc: {
+                    en: 'Build a small audio system that can play tones and simple melodies. Learn about audio processing, waveform generation, and speaker control.',
+                    ar: 'ابنِ نظامًا صوتيًا صغيرًا يمكنه عزف نغمات وألحان بسيطة. تعلم عن معالجة الصوت وتوليد الموجات والتحكم بمكبر الصوت.'
+                },
+                meta: { en: '🎵 Audio', ar: '🎵 صوت' },
+                skill: { en: 'Tone · Speaker', ar: 'نغمة · مكبر صوت' },
                 difficulty: 'advanced',
                 grad: 'grad-20'
             }, {
                 id: 21,
-                title: 'Autodriven Car',
                 emoji: '🚗',
-                desc: 'Build an autonomous car that navigates using ultrasonic sensors. Learn about obstacle avoidance, motor control, and autonomous decision-making.',
-                meta: '🤖 Robotics',
-                skill: 'Autonomous · Sensors',
+                title: { en: 'Autodriven Car', ar: 'سيارة ذاتية القيادة' },
+                desc: {
+                    en: 'Build an autonomous car that navigates using ultrasonic sensors. Learn about obstacle avoidance, motor control, and autonomous decision-making.',
+                    ar: 'ابنِ سيارة ذاتية القيادة تتنقل باستخدام حساسات الموجات فوق الصوتية. تعلم عن تجنب العوائق والتحكم بالمحركات واتخاذ القرار الذاتي.'
+                },
+                meta: { en: '🤖 Robotics', ar: '🤖 روبوتات' },
+                skill: { en: 'Autonomous · Sensors', ar: 'ذاتي · حساسات' },
                 difficulty: 'advanced',
                 grad: 'grad-21'
             }, {
                 id: 22,
-                title: 'Line‑Tracking Robot',
                 emoji: '🤖',
-                desc: 'Create a robot that follows a black line using IR sensors. Learn about feedback control, sensor calibration, and precision movement.',
-                meta: '🎯 Precision',
-                skill: 'IR · Feedback',
+                title: { en: 'Line‑Tracking Robot', ar: 'روبوت تتبع الخط' },
+                desc: {
+                    en: 'Create a robot that follows a black line using IR sensors. Learn about feedback control, sensor calibration, and precision movement.',
+                    ar: 'أنشئ روبوتًا يتبع خطًا أسود باستخدام حساسات الأشعة تحت الحمراء. تعلم عن التحكم بالتغذية الراجعة ومعايرة الحساسات والحركة الدقيقة.'
+                },
+                meta: { en: '🎯 Precision', ar: '🎯 دقة' },
+                skill: { en: 'IR · Feedback', ar: 'IR · تغذية راجعة' },
                 difficulty: 'advanced',
                 grad: 'grad-22'
             }, {
                 id: 23,
-                title: 'Digital Camera',
                 emoji: '📸',
-                desc: 'Build a simple digital camera using a camera module and SD card. Learn about image capture, data storage, and embedded imaging systems.',
-                meta: '📷 Imaging',
-                skill: 'Camera · Storage',
+                title: { en: 'Digital Camera', ar: 'كاميرا رقمية' },
+                desc: {
+                    en: 'Build a simple digital camera using a camera module and SD card. Learn about image capture, data storage, and embedded imaging systems.',
+                    ar: 'ابنِ كاميرا رقمية بسيطة باستخدام وحدة كاميرا وبطاقة SD. تعلم عن التقاط الصور وتخزين البيانات وأنظمة التصوير المدمجة.'
+                },
+                meta: { en: '📷 Imaging', ar: '📷 تصوير' },
+                skill: { en: 'Camera · Storage', ar: 'كاميرا · تخزين' },
                 difficulty: 'advanced',
                 grad: 'grad-23'
             }, {
                 id: 24,
-                title: 'Smart Home',
                 emoji: '🏠',
-                desc: 'Create a complete smart home system with lights, fans, and security. Learn about IoT, system integration, and intelligent home automation.',
-                meta: '🏡 IoT',
-                skill: 'Integration · Automation',
+                title: { en: 'Smart Home', ar: 'منزل ذكي' },
+                desc: {
+                    en: 'Create a complete smart home system with lights, fans, and security. Learn about IoT, system integration, and intelligent home automation.',
+                    ar: 'أنشئ نظام منزل ذكي متكامل بالإضاءة والمراوح والأمان. تعلم عن إنترنت الأشياء ودمج الأنظمة وأتمتة المنزل الذكي.'
+                },
+                meta: { en: '🏡 IoT', ar: '🏡 إنترنت الأشياء' },
+                skill: { en: 'Integration · Automation', ar: 'دمج · أتمتة' },
                 difficulty: 'advanced',
                 grad: 'grad-24'
             }];
+
+            const translations = {
+                en: {
+                    slogan: 'Learn · Think · Create',
+                    navJourney: 'Journey',
+                    navCurriculum: 'Curriculum',
+                    navProjects: 'Projects',
+                    navEnroll: 'Enroll Now',
+                    heroBadge: 'Now Enrolling — Limited Spots',
+                    heroTitle: 'From <span class="highlight">zero</span> to building <span class="highlight">real electronics</span>',
+                    heroDesc: 'A complete hands‑on Arduino journey. Your child will build 20+ projects, master coding, and understand electronics from the atom to the smart home.',
+                    btnCurriculum: '📘 View Curriculum',
+                    btnProjects: '✨ See Projects',
+                    statSessions: 'Sessions',
+                    statProjects: 'Hands‑on Projects',
+                    statTopics: 'Topics Covered',
+                    showcaseBrand: 'Arduino Mastery',
+                    showcaseSub: 'Circuit Board · Sensors · Motors · Projects',
+                    statsBarSessions: 'Structured Sessions',
+                    statsBarTopics: 'Topics & Concepts',
+                    statsBarProjects: 'Complete Projects',
+                    statsBarSensors: 'Sensor Types',
+                    journeyTag: '🚀 Your Path',
+                    journeyTitle: 'The <span class="highlight">Learning Journey</span>',
+                    journeySub: 'A structured progression from absolute beginner to confident maker across 9 phases.',
+                    curriculumTag: '📖 Curriculum',
+                    curriculumTitle: "Every topic you'll <span class=\"highlight\">master</span>",
+                    curriculumSub: 'Over 100 topics organised into 6 logical categories — pure learning.',
+                    projectsTag: '✨ Projects',
+                    projectsTitle: "What they'll <span class=\"highlight\">build</span>",
+                    projectsSub: 'Every project is a milestone. From the first LED to a complete smart home.',
+                    enrollBadge: '🚀 Ready to start?',
+                    enrollTitle: 'Start the <span class="highlight">journey</span> today',
+                    enrollDesc: '<strong>35 sessions</strong> across 9 phases. <strong>100+ topics</strong>. <strong>20+ projects</strong>. From the atom to the smart home — your child will build, code, and create like an engineer.',
+                    optJoinTitle: 'Join Group',
+                    optJoinDesc: 'Your child joins an existing group (5-8 Students) at our classroom location and learns alongside other students in a collaborative environment.',
+                    optJoinTag: '📍 At our classroom',
+                    optHostTitle: 'Host Private Group',
+                    optHostDesc: 'Gather 5–8 students and host private sessions at your own location. Enjoy special discount offers.',
+                    optHostTag: '🏷️ Enjoy special Discount offers',
+                    formTitle: '📋 Secure your spot',
+                    formSub: "Choose how you'd like to join, then fill in the details.",
+                    lblStudentName: 'Student Name',
+                    phStudentName: 'e.g. Ahmed Mohamed',
+                    lblAge: 'Age',
+                    phAge: 'e.g. 12',
+                    lblGrade: 'Grade / Class',
+                    phGrade: 'e.g. Grade 7',
+                    lblPhone: 'Parent Phone',
+                    phPhone: 'e.g. 01012345678',
+                    confirmNumber: 'Confirm number',
+                    lblSchool: 'Student School Name',
+                    phSchool: 'e.g. Cairo International School',
+                    lblRegion: 'School Region',
+                    phRegion: 'e.g. Nasr City',
+                    lblGovernorate: 'Governorate',
+                    govSelect: '— Select Governorate —',
+                    gov_Alexandria: 'Alexandria', gov_Aswan: 'Aswan', gov_Asyut: 'Asyut',
+                    gov_Beheira: 'Beheira', gov_BeniSuef: 'Beni Suef', gov_Cairo: 'Cairo',
+                    gov_Dakahlia: 'Dakahlia', gov_Damietta: 'Damietta', gov_Faiyum: 'Faiyum',
+                    gov_Gharbia: 'Gharbia', gov_Giza: 'Giza', gov_Ismailia: 'Ismailia',
+                    gov_KafrElSheikh: 'Kafr El Sheikh', gov_Luxor: 'Luxor', gov_Matrouh: 'Matrouh',
+                    gov_Minya: 'Minya', gov_Monufia: 'Monufia', gov_NewValley: 'New Valley',
+                    gov_NorthSinai: 'North Sinai', gov_PortSaid: 'Port Said', gov_Qalyubia: 'Qalyubia',
+                    gov_Qena: 'Qena', gov_RedSea: 'Red Sea', gov_Sharqia: 'Sharqia',
+                    gov_Sohag: 'Sohag', gov_SouthSinai: 'South Sinai', gov_Suez: 'Suez',
+                    lblPhase: 'Select Phase',
+                    phaseSelectPlaceholder: '— Choose a phase —',
+                    offlineWord: 'Offline',
+                    phaseSelectHint: 'Select a phase above to see its description.',
+                    phaseOfflineNote: '⚡ All phases are offline',
+                    hostFieldsLabel: '🏠 Host Group Details',
+                    lblGroupSize: 'Number of Children (incl. host)',
+                    phGroupSize: 'min 5, max 8',
+                    lblArea: 'Area / Neighborhood',
+                    phArea: 'e.g. Nasr City',
+                    lblTalk: "Anything you'd like to tell us?",
+                    phTalk: 'Special requests, questions, or comments…',
+                    submitBtn: '📩 Enroll Now',
+                    submitBtnLoading: '⏳ Submitting…',
+                    enrollTagline: '💡 <span class="accent">Turning ideas into reality</span>, one circuit at a time.',
+                    rightsReserved: 'All rights reserved.',
+                    footerTagline: 'Designed for young engineers who love to make things.',
+                    msgFillRequired: 'Please fill in all required fields.',
+                    msgFillHost: 'Please complete all host group fields.',
+                    msgConfirmPhone: '⚠️ Please confirm your phone number by checking the box.',
+                    msgSending: 'Sending your enrollment…',
+                    msgSuccess: "Submitted successfully! We'll contact you within 24 hours.",
+                    msgErrorGeneric: 'Something went wrong. Please try again.',
+                    msgNetworkError: '❌ Network error. Please check your connection and try again.'
+                },
+                ar: {
+                    slogan: 'تعلم · فكر · ابتكر',
+                    navJourney: 'الرحلة',
+                    navCurriculum: 'المنهج',
+                    navProjects: 'المشاريع',
+                    navEnroll: 'سجل الآن',
+                    heroBadge: 'التسجيل مفتوح الآن — أماكن محدودة',
+                    heroTitle: 'من <span class="highlight">الصفر</span> إلى بناء <span class="highlight">إلكترونيات حقيقية</span>',
+                    heroDesc: 'رحلة عملية متكاملة مع الأردوينو. سيقوم طفلك ببناء أكثر من 20 مشروعًا، وإتقان البرمجة، وفهم الإلكترونيات من الذرة إلى المنزل الذكي.',
+                    btnCurriculum: '📘 عرض المنهج',
+                    btnProjects: '✨ شاهد المشاريع',
+                    statSessions: 'جلسة',
+                    statProjects: 'مشروع عملي',
+                    statTopics: 'موضوع',
+                    showcaseBrand: 'احتراف الأردوينو',
+                    showcaseSub: 'لوحة الدوائر · الحساسات · المحركات · المشاريع',
+                    statsBarSessions: 'جلسات منظمة',
+                    statsBarTopics: 'مواضيع ومفاهيم',
+                    statsBarProjects: 'مشاريع كاملة',
+                    statsBarSensors: 'أنواع الحساسات',
+                    journeyTag: '🚀 مسارك',
+                    journeyTitle: 'رحلة <span class="highlight">التعلّم</span>',
+                    journeySub: 'تقدّم منظم من المبتدئ تمامًا إلى صانع واثق عبر 9 مراحل.',
+                    curriculumTag: '📖 المنهج',
+                    curriculumTitle: 'كل موضوع <span class="highlight">ستتقنه</span>',
+                    curriculumSub: 'أكثر من 100 موضوع مقسّمة إلى 6 فئات منطقية — تعلّم خالص.',
+                    projectsTag: '✨ المشاريع',
+                    projectsTitle: 'ماذا <span class="highlight">سيبنون</span>',
+                    projectsSub: 'كل مشروع هو إنجاز. من أول LED إلى منزل ذكي متكامل.',
+                    enrollBadge: '🚀 جاهز للبدء؟',
+                    enrollTitle: 'ابدأ <span class="highlight">الرحلة</span> اليوم',
+                    enrollDesc: '<strong>35 جلسة</strong> عبر 9 مراحل. <strong>أكثر من 100 موضوع</strong>. <strong>أكثر من 20 مشروعًا</strong>. من الذرة إلى المنزل الذكي — سيقوم طفلك بالبناء والبرمجة والابتكار كمهندس.',
+                    optJoinTitle: 'انضم لمجموعة',
+                    optJoinDesc: 'ينضم طفلك إلى مجموعة قائمة (5-8 طلاب) في موقع فصلنا الدراسي ويتعلم جنبًا إلى جنب مع طلاب آخرين في بيئة تعاونية.',
+                    optJoinTag: '📍 في فصلنا الدراسي',
+                    optHostTitle: 'استضف مجموعة خاصة',
+                    optHostDesc: 'اجمع 5-8 طلاب واستضف جلسات خاصة في موقعك. استمتع بعروض خصم خاصة.',
+                    optHostTag: '🏷️ استمتع بعروض خصم خاصة',
+                    formTitle: '📋 احجز مكانك',
+                    formSub: 'اختر طريقة الانضمام، ثم املأ التفاصيل.',
+                    lblStudentName: 'اسم الطالب',
+                    phStudentName: 'مثال: أحمد محمد',
+                    lblAge: 'العمر',
+                    phAge: 'مثال: 12',
+                    lblGrade: 'الصف / المرحلة',
+                    phGrade: 'مثال: الصف السابع',
+                    lblPhone: 'هاتف ولي الأمر',
+                    phPhone: 'مثال: 01012345678',
+                    confirmNumber: 'تأكيد الرقم',
+                    lblSchool: 'اسم مدرسة الطالب',
+                    phSchool: 'مثال: مدرسة القاهرة الدولية',
+                    lblRegion: 'منطقة المدرسة',
+                    phRegion: 'مثال: مدينة نصر',
+                    lblGovernorate: 'المحافظة',
+                    govSelect: '— اختر المحافظة —',
+                    gov_Alexandria: 'الإسكندرية', gov_Aswan: 'أسوان', gov_Asyut: 'أسيوط',
+                    gov_Beheira: 'البحيرة', gov_BeniSuef: 'بني سويف', gov_Cairo: 'القاهرة',
+                    gov_Dakahlia: 'الدقهلية', gov_Damietta: 'دمياط', gov_Faiyum: 'الفيوم',
+                    gov_Gharbia: 'الغربية', gov_Giza: 'الجيزة', gov_Ismailia: 'الإسماعيلية',
+                    gov_KafrElSheikh: 'كفر الشيخ', gov_Luxor: 'الأقصر', gov_Matrouh: 'مطروح',
+                    gov_Minya: 'المنيا', gov_Monufia: 'المنوفية', gov_NewValley: 'الوادي الجديد',
+                    gov_NorthSinai: 'شمال سيناء', gov_PortSaid: 'بورسعيد', gov_Qalyubia: 'القليوبية',
+                    gov_Qena: 'قنا', gov_RedSea: 'البحر الأحمر', gov_Sharqia: 'الشرقية',
+                    gov_Sohag: 'سوهاج', gov_SouthSinai: 'جنوب سيناء', gov_Suez: 'السويس',
+                    lblPhase: 'اختر المرحلة',
+                    phaseSelectPlaceholder: '— اختر مرحلة —',
+                    offlineWord: 'حضوري',
+                    phaseSelectHint: 'اختر مرحلة أعلاه لرؤية وصفها.',
+                    phaseOfflineNote: '⚡ جميع المراحل حضورية (أوفلاين)',
+                    hostFieldsLabel: '🏠 تفاصيل المجموعة المستضافة',
+                    lblGroupSize: 'عدد الأطفال (شامل المضيف)',
+                    phGroupSize: 'الحد الأدنى 5، الأقصى 8',
+                    lblArea: 'المنطقة / الحي',
+                    phArea: 'مثال: مدينة نصر',
+                    lblTalk: 'هل تود إخبارنا بأي شيء؟',
+                    phTalk: 'طلبات خاصة، أسئلة، أو ملاحظات…',
+                    submitBtn: '📩 سجل الآن',
+                    submitBtnLoading: '⏳ جارٍ الإرسال…',
+                    enrollTagline: '💡 <span class="accent">نحوّل الأفكار إلى واقع</span>، دائرة كهربائية تلو الأخرى.',
+                    rightsReserved: 'جميع الحقوق محفوظة.',
+                    footerTagline: 'صُمم للمهندسين الصغار الذين يحبون صنع الأشياء.',
+                    msgFillRequired: 'يرجى ملء جميع الحقول المطلوبة.',
+                    msgFillHost: 'يرجى إكمال جميع حقول المجموعة المستضافة.',
+                    msgConfirmPhone: '⚠️ يرجى تأكيد رقم هاتفك عبر تحديد المربع.',
+                    msgSending: 'جارٍ إرسال تسجيلك…',
+                    msgSuccess: 'تم الإرسال بنجاح! سنتواصل معك خلال 24 ساعة.',
+                    msgErrorGeneric: 'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
+                    msgNetworkError: '❌ خطأ في الشبكة. يرجى التحقق من اتصالك والمحاولة مرة أخرى.'
+                }
+            };
+
+            const difficultyLabels = {
+                beginner: { en: 'beginner', ar: 'مبتدئ' },
+                intermediate: { en: 'intermediate', ar: 'متوسط' },
+                advanced: { en: 'advanced', ar: 'متقدم' }
+            };
 
             const order = { beginner: 0, intermediate: 1, advanced: 2 };
             projectsData.sort((a, b) => order[a.difficulty] - order[b.difficulty]);
 
             const grid = document.getElementById('projectsGrid');
+            const journeyTimeline = document.getElementById('journeyTimeline');
+            const curriculumGrid = document.getElementById('curriculumGrid');
+            const phaseSelect = document.getElementById('phaseSelect');
 
-            projectsData.forEach((project) => {
-                const card = document.createElement('div');
-                card.className = 'project-card reveal';
+            function renderProjects() {
+                grid.innerHTML = '';
+                projectsData.forEach((project) => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card reveal visible';
 
-                const baseName = project.title;
-                const pngSrc = encodeURIComponent(baseName) + '.png';
-                const jpgSrc = encodeURIComponent(baseName) + '.jpg';
-                const webpSrc = encodeURIComponent(baseName) + '.webp';
+                    const baseName = project.title.en;
+                    const pngSrc = encodeURIComponent(baseName) + '.png';
+                    const jpgSrc = encodeURIComponent(baseName) + '.jpg';
+                    const webpSrc = encodeURIComponent(baseName) + '.webp';
 
-                card.innerHTML = `
-                    <div class="project-image ${project.grad}">
-                        <img
-                            src="${pngSrc}"
-                            alt="${project.title}"
-                            loading="lazy"
-                            data-jpg="${jpgSrc}"
-                            data-webp="${webpSrc}"
-                        />
-                        <div class="overlay"></div>
-                        <span class="badge ${project.difficulty}">${project.difficulty}</span>
-                        <span class="fallback-icon">${project.emoji}</span>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-title">
-                            <span class="emoji">${project.emoji}</span>
-                            ${project.title}
+                    const title = project.title[currentLang];
+                    const desc = project.desc[currentLang];
+                    const meta = project.meta[currentLang];
+                    const skill = project.skill[currentLang];
+                    const diff = difficultyLabels[project.difficulty][currentLang];
+
+                    card.innerHTML = `
+                        <div class="project-image ${project.grad}">
+                            <img
+                                src="${pngSrc}"
+                                alt="${title}"
+                                loading="lazy"
+                                data-jpg="${jpgSrc}"
+                                data-webp="${webpSrc}"
+                            />
+                            <div class="overlay"></div>
+                            <span class="badge ${project.difficulty}">${diff}</span>
+                            <span class="fallback-icon">${project.emoji}</span>
                         </div>
-                        <div class="project-desc">${project.desc}</div>
-                        <div class="project-meta">
-                            <span>${project.meta}</span>
-                            <span class="skill-tag">${project.skill}</span>
+                        <div class="project-body">
+                            <div class="project-title">
+                                <span class="emoji">${project.emoji}</span>
+                                ${title}
+                            </div>
+                            <div class="project-desc">${desc}</div>
+                            <div class="project-meta">
+                                <span>${meta}</span>
+                                <span class="skill-tag">${skill}</span>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
 
-                grid.appendChild(card);
+                    grid.appendChild(card);
 
-                const img = card.querySelector('img');
-                const fallbackIcon = card.querySelector('.fallback-icon');
-                let attempts = 0;
+                    const img = card.querySelector('img');
+                    const fallbackIcon = card.querySelector('.fallback-icon');
+                    let attempts = 0;
 
-                img.addEventListener('error', function handler() {
-                    attempts++;
-                    if (attempts === 1) {
-                        this.src = this.dataset.jpg;
-                    } else if (attempts === 2) {
-                        this.src = this.dataset.webp;
-                    } else {
-                        this.style.display = 'none';
-                        if (fallbackIcon) {
-                            fallbackIcon.style.display = 'block';
-                            fallbackIcon.style.fontSize = '4rem';
-                            fallbackIcon.style.opacity = '0.3';
-                            fallbackIcon.style.zIndex = '1';
+                    img.addEventListener('error', function handler() {
+                        attempts++;
+                        if (attempts === 1) {
+                            this.src = this.dataset.jpg;
+                        } else if (attempts === 2) {
+                            this.src = this.dataset.webp;
+                        } else {
+                            this.style.display = 'none';
+                            if (fallbackIcon) {
+                                fallbackIcon.style.display = 'block';
+                                fallbackIcon.style.fontSize = '4rem';
+                                fallbackIcon.style.opacity = '0.3';
+                                fallbackIcon.style.zIndex = '1';
+                            }
                         }
+                    });
+                });
+            }
+
+            function renderJourney() {
+                journeyTimeline.innerHTML = '';
+                phaseData.forEach((phase, idx) => {
+                    const step = document.createElement('div');
+                    step.className = 'journey-step reveal visible';
+                    step.setAttribute('data-phase', phase.id);
+                    step.innerHTML = `
+                        <div class="step-icon">${phase.icon}</div>
+                        <div class="step-content">
+                            <span class="step-number">${currentLang === 'ar' ? 'المرحلة ' + phase.id : 'Phase ' + phase.id}</span>
+                            <h4>${phase.name[currentLang]}</h4>
+                            <div class="phase-desc">${phase.description[currentLang]}</div>
+                        </div>
+                    `;
+                    journeyTimeline.appendChild(step);
+                });
+            }
+
+            function renderCurriculum() {
+                curriculumGrid.innerHTML = '';
+                curriculumData.forEach((cat) => {
+                    const card = document.createElement('div');
+                    card.className = 'curriculum-card reveal visible';
+                    const tagsHtml = cat.tags.map(t => `<span class="tag">${t[currentLang]}</span>`).join('');
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <span class="icon">${cat.icon}</span>
+                            <h4>${cat.title[currentLang]}</h4>
+                        </div>
+                        <div class="topic-tags">${tagsHtml}</div>
+                    `;
+                    curriculumGrid.appendChild(card);
+                });
+            }
+
+            function renderPhaseOptions() {
+                const currentValue = phaseSelect.value;
+                phaseSelect.innerHTML = '';
+                const placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.textContent = translations[currentLang].phaseSelectPlaceholder;
+                phaseSelect.appendChild(placeholder);
+                phaseData.forEach((phase) => {
+                    const opt = document.createElement('option');
+                    opt.value = phase.id;
+                    const prefix = currentLang === 'ar' ? 'المرحلة ' : 'Phase ';
+                    opt.textContent = `${prefix}${phase.id} – ${phase.name[currentLang]}`;
+                    phaseSelect.appendChild(opt);
+                });
+                phaseSelect.value = currentValue;
+            }
+
+            function applyStaticTranslations() {
+                const dict = translations[currentLang];
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (dict[key] !== undefined) {
+                        el.textContent = dict[key];
                     }
                 });
-            });
+                document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-html');
+                    if (dict[key] !== undefined) {
+                        el.innerHTML = dict[key];
+                    }
+                });
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-placeholder');
+                    if (dict[key] !== undefined) {
+                        el.setAttribute('placeholder', dict[key]);
+                    }
+                });
+                document.title = currentLang === 'ar'
+                    ? 'أكاديمية APlusCoders | عمرو الجندي – احتراف الأردوينو'
+                    : 'APlusCodersAcademy | Amr Elgendy – Arduino Mastery';
+
+                const langBtn = document.getElementById('langToggleBtn');
+                langBtn.textContent = currentLang === 'ar' ? 'EN / English' : 'AR / عربي';
+            }
+
+            function applyLanguage(lang) {
+                currentLang = lang;
+                document.documentElement.setAttribute('lang', lang);
+                document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+                applyStaticTranslations();
+                renderJourney();
+                renderCurriculum();
+                renderProjects();
+                renderPhaseOptions();
+                updatePhaseDetails();
+            }
+
+            window.toggleLanguage = function() {
+                applyLanguage(currentLang === 'en' ? 'ar' : 'en');
+            };
+
+            document.getElementById('langToggleBtn').addEventListener('click', window.toggleLanguage);
 
             const header = document.getElementById('header');
 
@@ -3394,10 +3743,11 @@
                 }
 
                 const phase = phaseData[phaseId - 1];
-                nameEl.textContent = phase.icon + ' ' + phase.name;
-                priceEl.innerHTML = phase.price.toLocaleString() + ' <span>EGP</span>';
-                sessionsEl.textContent = phase.sessions;
-                descEl.textContent = phase.description;
+                const currencyLabel = currentLang === 'ar' ? 'ج.م' : 'EGP';
+                nameEl.textContent = phase.icon + ' ' + phase.name[currentLang];
+                priceEl.innerHTML = phase.price.toLocaleString() + ' <span>' + currencyLabel + '</span>';
+                sessionsEl.textContent = phase.sessions[currentLang];
+                descEl.textContent = phase.description[currentLang];
                 box.classList.add('visible');
             };
 
@@ -3453,11 +3803,13 @@
                 e.preventDefault();
                 hideMessage();
 
+                const dict = translations[currentLang];
+
                 const phoneInput = document.getElementById('contactPhoneNumber');
                 const phoneVal = phoneInput.value.trim();
 
                 if (phoneVal.length >= 6 && !document.getElementById('phoneConfirmCheckbox').checked) {
-                    showMessage('error', '⚠️ Please confirm your phone number by checking the box.');
+                    showMessage('error', dict.msgConfirmPhone);
                     return false;
                 }
 
@@ -3469,12 +3821,12 @@
                 const schoolName = document.getElementById('schoolName').value.trim();
                 const schoolRegion = document.getElementById('schoolRegion').value.trim();
                 const governorate = document.getElementById('governorate').value;
-                const phaseSelect = document.getElementById('phaseSelect').value;
+                const phaseSelectVal = document.getElementById('phaseSelect').value;
                 const talkToUs = document.getElementById('talkToUs').value.trim();
 
                 if (!studentName || !studentAge || !studentGrade || !contactPhone ||
-                    !schoolName || !schoolRegion || !governorate || !phaseSelect) {
-                    showMessage('error', 'Please fill in all required fields.');
+                    !schoolName || !schoolRegion || !governorate || !phaseSelectVal) {
+                    showMessage('error', dict.msgFillRequired);
                     return false;
                 }
 
@@ -3484,15 +3836,15 @@
                     const area = document.getElementById('area').value.trim();
 
                     if (!groupSize || !area) {
-                        showMessage('error', 'Please complete all host group fields.');
+                        showMessage('error', dict.msgFillHost);
                         return false;
                     }
                     hostData = { groupSize, area };
                 }
 
                 submitBtn.disabled = true;
-                submitBtn.textContent = '⏳ Submitting…';
-                showMessage('loading', 'Sending your enrollment…');
+                submitBtn.textContent = dict.submitBtnLoading;
+                showMessage('loading', dict.msgSending);
 
                 try {
                     const params = new URLSearchParams({
@@ -3505,7 +3857,7 @@
                         schoolName,
                         schoolRegion,
                         governorate,
-                        phase: phaseSelect,
+                        phase: phaseSelectVal,
                         talkToUs: talkToUs || '',
                         ...hostData
                     });
@@ -3514,21 +3866,21 @@
                     const result = await jsonpRequest(url);
 
                     if (result.status === 'success') {
-                        showMessage('success', 'Submitted successfully! We\'ll contact you within 24 hours.');
+                        showMessage('success', dict.msgSuccess);
                         form.reset();
                         setEnrollmentType('join');
                         document.getElementById('phaseDetailBox').classList.remove('visible');
                         document.getElementById('phoneConfirmArea').classList.remove('visible');
                         document.getElementById('displayPhoneNumber').textContent = '—';
                     } else {
-                        showMessage('error', '❌ ' + (result.message || 'Something went wrong. Please try again.'));
+                        showMessage('error', '❌ ' + (result.message || dict.msgErrorGeneric));
                     }
                 } catch (err) {
-                    showMessage('error', '❌ Network error. Please check your connection and try again.');
+                    showMessage('error', dict.msgNetworkError);
                     console.error('Enrollment error:', err);
                 } finally {
                     submitBtn.disabled = false;
-                    submitBtn.textContent = '📩 Enroll Now';
+                    submitBtn.textContent = dict.submitBtn;
                 }
 
                 return false;
@@ -3537,10 +3889,10 @@
             window.handleSubmit = handleSubmit;
 
             setEnrollmentType('join');
-            document.getElementById('phaseSelect').addEventListener('change', updatePhaseDetails);
             updatePhoneDisplay();
+            applyLanguage('en');
 
-            console.log('✅ APlusCodersAcademy enrollment page ready (compact phone confirm).');
+            console.log('✅ APlusCodersAcademy enrollment page ready (bilingual EN/AR).');
 
         })();
     </script>
